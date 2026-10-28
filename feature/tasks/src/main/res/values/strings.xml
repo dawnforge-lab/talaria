@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feature_tasks_title">Tasks</string>
+    <string name="feature_tasks_back">Back</string>
+    <string name="feature_tasks_retry">Try again</string>
+    <string name="feature_tasks_refresh">Refresh</string>
+    <string name="feature_tasks_more">More</string>
+    <string name="feature_tasks_cancel">Cancel</string>
+    <string name="feature_tasks_save">Save</string>
+    <string name="feature_tasks_unavailable">The task board is unavailable. %1$s</string>
+    <string name="feature_tasks_refresh_failed">Refresh failed. %1$s</string>
+    <string name="feature_tasks_choose_board">Choose a board</string>
+    <string name="feature_tasks_board_current">Hermes\' current (%1$s)</string>
+    <string name="feature_tasks_new_task">New task</string>
+    <string name="feature_tasks_nudge">Nudge the dispatcher</string>
+    <string name="feature_tasks_nudged">Dispatcher nudged</string>
+    <string name="feature_tasks_search">Search tasks</string>
+    <string name="feature_tasks_clear_search">Clear search</string>
+    <string name="feature_tasks_filters">Filters</string>
+    <string name="feature_tasks_all_profiles">All profiles</string>
+    <string name="feature_tasks_show_archived">Show archived</string>
+    <string name="feature_tasks_lane_empty">Nothing here.</string>
+    <string name="feature_tasks_lane_locked">Hermes moves tasks in and out of this lane itself.</string>
+    <string name="feature_tasks_live">Live</string>
+    <string name="feature_tasks_shared_note">The board is shared by every profile on this Hermes.</string>
+
+    <!-- Lanes -->
+    <string name="feature_tasks_lane_triage">Triage</string>
+    <string name="feature_tasks_lane_todo">To do</string>
+    <string name="feature_tasks_lane_scheduled">Scheduled</string>
+    <string name="feature_tasks_lane_ready">Ready</string>
+    <string name="feature_tasks_lane_running">Running</string>
+    <string name="feature_tasks_lane_blocked">Blocked</string>
+    <string name="feature_tasks_lane_review">Review</string>
+    <string name="feature_tasks_lane_done">Done</string>
+    <string name="feature_tasks_lane_archived">Archived</string>
+    <string name="feature_tasks_lane_other">Other</string>
+
+    <!-- Cards -->
+    <string name="feature_tasks_no_heartbeat">no heartbeat</string>
+    <string name="feature_tasks_wont_run">won\'t run</string>
+    <string name="feature_tasks_progress">%1$d/%2$d</string>
+    <string name="feature_tasks_priority">P%1$d</string>
+    <string name="feature_tasks_unassigned">Unassigned</string>
+    <string name="feature_tasks_move_to">Move to %1$s</string>
+    <string name="feature_tasks_copy_id">Copy task ID</string>
+    <string name="feature_tasks_copy_title">Copy task title</string>
+    <string name="feature_tasks_copied">Copied</string>
+    <string name="feature_tasks_archive">Archive</string>
+    <string name="feature_tasks_delete">Delete</string>
+    <string name="feature_tasks_delete_title">Delete this task?</string>
+    <string name="feature_tasks_delete_message">This removes the task from the board for good, with its comments and history.</string>
+    <string name="feature_tasks_change_failed">Couldn\'t change the task. %1$s</string>
+    <plurals name="feature_tasks_comments">
+        <item quantity="one">%1$d comment</item>
+        <item quantity="other">%1$d comments</item>
+    </plurals>
+    <plurals name="feature_tasks_warnings">
+        <item quantity="one">%1$d warning</item>
+        <item quantity="other">%1$d warnings</item>
+    </plurals>
+
+    <!-- Task page -->
+    <string name="feature_tasks_task">Task</string>
+    <string name="feature_tasks_loading_failed">Couldn\'t load this task. %1$s</string>
+    <string name="feature_tasks_field_title">Title</string>
+    <string name="feature_tasks_field_body">Description</string>
+    <string name="feature_tasks_save_changes">Save changes</string>
+    <string name="feature_tasks_unsaved">Unsaved edits</string>
+    <string name="feature_tasks_changed_on_server">This task changed on Hermes. Your unsaved edits are kept.</string>
+    <string name="feature_tasks_lane">Lane</string>
+    <string name="feature_tasks_assignment">Assignment</string>
+    <string name="feature_tasks_assignee">Assigned to</string>
+    <string name="feature_tasks_assignee_default">%1$s (by default)</string>
+    <string name="feature_tasks_reassign">Reassign</string>
+    <string name="feature_tasks_unassign">Unassign (parked: won\'t run)</string>
+    <string name="feature_tasks_priority_label">Priority</string>
+    <string name="feature_tasks_priority_help">Higher runs first.</string>
+    <string name="feature_tasks_workspace">Workspace</string>
+    <string name="feature_tasks_model">Model</string>
+    <string name="feature_tasks_model_inherit">The profile\'s own</string>
+    <string name="feature_tasks_worker">Worker</string>
+    <string name="feature_tasks_worker_pid">Process %1$d</string>
+    <string name="feature_tasks_created_by">Created by</string>
+    <string name="feature_tasks_failures">Failures in a row</string>
+    <string name="feature_tasks_last_failure">Last failure</string>
+    <string name="feature_tasks_result">Result</string>
+    <string name="feature_tasks_wont_run_detail">Nobody is assigned and Hermes has no default assignee, so this task won\'t run until someone is.</string>
+    <string name="feature_tasks_assign_now">Assign now</string>
+    <string name="feature_tasks_waiting_on_you">Waiting on you</string>
+    <string name="feature_tasks_triage">Triage</string>
+    <string name="feature_tasks_specify">Write it up</string>
+    <string name="feature_tasks_specify_help">Hermes turns the idea into a clear task.</string>
+    <string name="feature_tasks_decompose">Split into tasks</string>
+    <string name="feature_tasks_decompose_title">Split this task?</string>
+    <string name="feature_tasks_decompose_message">Hermes may create and assign several dependent tasks.</string>
+    <string name="feature_tasks_specified">Task written up</string>
+    <plurals name="feature_tasks_decomposed">
+        <item quantity="one">Split into %1$d task</item>
+        <item quantity="other">Split into %1$d tasks</item>
+    </plurals>
+    <string name="feature_tasks_triage_refused">Hermes didn\'t do it. %1$s</string>
+    <string name="feature_tasks_diagnostics">Diagnostics</string>
+    <string name="feature_tasks_reclaim">Reclaim</string>
+    <string name="feature_tasks_copy_command">Copy the command</string>
+    <string name="feature_tasks_dependencies">Dependencies</string>
+    <string name="feature_tasks_blocked_by">Blocked by</string>
+    <string name="feature_tasks_blocks">Blocks</string>
+    <string name="feature_tasks_comments_title">Comments</string>
+    <string name="feature_tasks_no_comments">No comments yet.</string>
+    <string name="feature_tasks_comment_hint">Add a comment</string>
+    <string name="feature_tasks_add_comment">Add comment</string>
+    <string name="feature_tasks_send">Send</string>
+    <string name="feature_tasks_running_note">A comment reaches the working agent between its turns.</string>
+    <string name="feature_tasks_note_requeue">Note and requeue</string>
+    <string name="feature_tasks_reply_unblock">Reply and unblock</string>
+    <string name="feature_tasks_requeue_failed">The note was posted, but the task couldn\'t be requeued. %1$s</string>
+    <string name="feature_tasks_unblock_failed">The reply was posted, but the task couldn\'t be unblocked. %1$s</string>
+    <string name="feature_tasks_activity">Activity</string>
+    <string name="feature_tasks_earlier_hidden">%1$d earlier events hidden</string>
+    <string name="feature_tasks_runs">Runs</string>
+    <string name="feature_tasks_run_running">Running</string>
+    <string name="feature_tasks_worker_log">Worker log</string>
+    <string name="feature_tasks_log_never">No worker output yet. This task hasn\'t started a worker, so there is no log.</string>
+    <string name="feature_tasks_log_empty">(the log is empty)</string>
+    <string name="feature_tasks_log_failed">The log is unavailable. %1$s</string>
+    <string name="feature_tasks_log_truncated">%1$s · showing the last 64 KiB</string>
+    <string name="feature_tasks_log_omitted">[older output left out]</string>
+
+    <!-- Composer -->
+    <string name="feature_tasks_compose_title">New task</string>
+    <string name="feature_tasks_create">Create</string>
+    <string name="feature_tasks_title_required">A title is required.</string>
+    <string name="feature_tasks_assign_default">Default (%1$s)</string>
+    <string name="feature_tasks_assign_parked">Parked (won\'t run)</string>
+    <string name="feature_tasks_lands_in">Lands in</string>
+    <string name="feature_tasks_todo_note">To do holds a task while it waits on another. Without one, Hermes moves it to Ready.</string>
+    <string name="feature_tasks_depends_on">Depends on</string>
+    <string name="feature_tasks_no_parent">Nothing</string>
+    <string name="feature_tasks_priority_normal">Normal</string>
+    <string name="feature_tasks_priority_high">High</string>
+    <string name="feature_tasks_priority_urgent">Urgent</string>
+    <string name="feature_tasks_priority_critical">Critical</string>
+    <string name="feature_tasks_create_failed">Couldn\'t create the task. %1$s</string>
+    <string name="feature_tasks_created_not_moved">The task was created, but Hermes couldn\'t move it to %1$s. %2$s</string>
+    <!-- Selecting tasks -->
+    <string name="feature_tasks_select">Select tasks</string>
+    <plurals name="feature_tasks_selected">
+        <item quantity="one">%1$d task selected</item>
+        <item quantity="other">%1$d tasks selected</item>
+    </plurals>
+    <string name="feature_tasks_bulk_move">Move</string>
+    <string name="feature_tasks_bulk_assign">Assign</string>
+    <string name="feature_tasks_bulk_priority">Priority</string>
+    <string name="feature_tasks_bulk_unassign">Unassign</string>
+    <plurals name="feature_tasks_bulk_archive_title">
+        <item quantity="one">Archive %1$d task?</item>
+        <item quantity="other">Archive %1$d tasks?</item>
+    </plurals>
+    <string name="feature_tasks_bulk_archive_message">They leave the board. They aren\'t deleted.</string>
+    <plurals name="feature_tasks_bulk_delete_title">
+        <item quantity="one">Delete %1$d task?</item>
+        <item quantity="other">Delete %1$d tasks?</item>
+    </plurals>
+    <string name="feature_tasks_bulk_delete_message">This deletes the selected tasks for good. It can\'t be undone.</string>
+    <string name="feature_tasks_bulk_done">%1$d updated</string>
+    <string name="feature_tasks_bulk_failed">%1$d updated, %2$d failed</string>
+    <string name="feature_tasks_bulk_failed_detail">Task %1$s: %2$s</string>
+    <string name="feature_tasks_bulk_refused">Hermes refused the change.</string>
+
+    <!-- Boards -->
+    <string name="feature_tasks_new_board">New board…</string>
+    <string name="feature_tasks_board_settings">Board settings…</string>
+    <string name="feature_tasks_archive_board">Archive board…</string>
+    <string name="feature_tasks_board_name">Name</string>
+    <string name="feature_tasks_board_description">Description</string>
+    <string name="feature_tasks_board_slug">Short name: %1$s</string>
+    <string name="feature_tasks_board_slug_bad">Use letters or numbers in the name.</string>
+    <string name="feature_tasks_archive_board_title">Archive %1$s?</string>
+    <string name="feature_tasks_archive_board_message">The board leaves the list. Its tasks aren\'t deleted.</string>
+    <string name="feature_tasks_board_failed">Couldn\'t change the board. %1$s</string>
+    <string name="feature_tasks_routing">Routing and profiles…</string>
+
+    <!-- Routing -->
+    <string name="feature_tasks_routing_title">Routing</string>
+    <string name="feature_tasks_auto_decompose">Split triage tasks automatically</string>
+    <string name="feature_tasks_auto_decompose_help">The dispatcher splits new triage tasks into tasks for the right profiles.</string>
+    <string name="feature_tasks_auto_promote">Start split tasks automatically</string>
+    <string name="feature_tasks_auto_promote_help">Tasks made by a split move to Ready once their parent allows.</string>
+    <string name="feature_tasks_orchestrator">Splits are planned by</string>
+    <string name="feature_tasks_default_assignee">Tasks nobody was given go to</string>
+    <string name="feature_tasks_default_choice">Default (%1$s)</string>
+    <string name="feature_tasks_default_none">Default</string>
+    <string name="feature_tasks_profiles">Profiles</string>
+    <string name="feature_tasks_profiles_note">Hermes routes split tasks to profiles by what they are for. A clear description helps it pick the right one.</string>
+    <string name="feature_tasks_profile_undescribed">No description yet</string>
+    <string name="feature_tasks_profile_auto">Written by Hermes, worth a look</string>
+    <string name="feature_tasks_profile_default">default</string>
+    <string name="feature_tasks_describe">What %1$s is for</string>
+    <string name="feature_tasks_describe_auto">Write it for me</string>
+    <string name="feature_tasks_describe_failed">Hermes couldn\'t write a description. %1$s</string>
+    <string name="feature_tasks_saved">Saved</string>
+    <string name="feature_tasks_routing_failed">Couldn\'t save. %1$s</string>
+    <string name="feature_tasks_profiles_none">No profiles on this Hermes yet.</string>
+    <string name="feature_tasks_describe_help">Hermes reads this to route split tasks. Saving it empty clears it, and Hermes matches by name instead.</string>
+    <string name="feature_tasks_describe_replace_title">Replace your edits?</string>
+    <string name="feature_tasks_describe_replace_message">Hermes writes a new description in place of your unsaved text.</string>
+    <string name="feature_tasks_replace">Replace</string>
+
+    <!-- Composer extras -->
+    <string name="feature_tasks_workspace_kind">Works in</string>
+    <string name="feature_tasks_workspace_scratch">A scratch folder</string>
+    <string name="feature_tasks_workspace_worktree">A git worktree</string>
+    <string name="feature_tasks_workspace_dir">A folder</string>
+    <string name="feature_tasks_workspace_board">The board\'s default</string>
+    <string name="feature_tasks_workspace_path">Folder on the host</string>
+    <string name="feature_tasks_workspace_path_hint">Blank takes the board\'s default</string>
+    <string name="feature_tasks_skills">Skills to load</string>
+    <string name="feature_tasks_skills_hint">Search skills</string>
+    <string name="feature_tasks_skills_none">None</string>
+    <string name="feature_tasks_skills_add">Add %1$s</string>
+    <string name="feature_tasks_goal_mode">Goal mode</string>
+    <string name="feature_tasks_goal_mode_help">The worker keeps going until a judge agrees the goal is met. Set a limit unless you\'re sure.</string>
+    <string name="feature_tasks_goal_turns">Most turns</string>
+    <string name="feature_tasks_goal_unlimited">No limit</string>
+    <string name="feature_tasks_model_choose">Model for this task</string>
+    <string name="feature_tasks_model_reasoning">Reasoning</string>
+    <string name="feature_tasks_model_reasoning_profile">The profile\'s own</string>
+    <string name="feature_tasks_model_none">No models are offered for tasks on this Hermes.</string>
+    <string name="feature_tasks_change_model">Change</string>
+</resources>

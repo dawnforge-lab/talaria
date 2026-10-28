@@ -1,0 +1,84 @@
+{"type": "session.info", "session_id": "rt-capture", "payload": {"model": "glm-5.3-flash", "provider": "ollama-cloud", "running": true, "turn_started_at": 1792598217.5753953, "title": "", "stored_session_id": "20261021_000000_capture"}, "seq": 1}
+{"type": "message.start", "session_id": "rt-capture", "seq": 2}
+{"type": "session.title", "session_id": "rt-capture", "payload": {"session_id": "20261021_000000_capture", "title": "This is an automated test of a mobile client…"}, "seq": 3}
+{"type": "thinking.delta", "session_id": "rt-capture", "payload": {"text": "(⌐■_■) reflecting..."}, "seq": 4}
+{"type": "thinking.delta", "session_id": "rt-capture", "payload": {"text": ""}, "seq": 5}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": "The"}, "seq": 6}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " user wants a"}, "seq": 7}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " specific sequence"}, "seq": 8}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": ": first a"}, "seq": 9}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " one-sentence statement of"}, "seq": 10}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " what I'm about to do"}, "seq": 11}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": ", then two separate terminal"}, "seq": 12}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " calls"}, "seq": 13}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " ("}, "seq": 14}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": "echo alpha, then echo"}, "seq": 15}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " beta), and finally a short"}, "seq": 16}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " Markdown bullet list of the two"}, "seq": 17}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " outputs in inline code. No"}, "seq": 18}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " skills are relevant here — this is a simple scripted test of"}, "seq": 19}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " tool-call"}, "seq": 20}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " sequencing. I'll"}, "seq": 21}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " answer"}, "seq": 22}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " with the one-sentence intro"}, "seq": 23}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": ", then issue"}, "seq": 24}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " the first"}, "seq": 25}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " terminal call. Since"}, "seq": 26}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " the user"}, "seq": 27}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " explicitly requires two separate calls,"}, "seq": 28}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " I must"}, "seq": 29}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " not batch"}, "seq": 30}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " them — I"}, "seq": 31}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": "'ll wait"}, "seq": 32}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " for the result"}, "seq": 33}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " of the"}, "seq": 34}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " first before"}, "seq": 35}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " issuing the second,"}, "seq": 36}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " then produce"}, "seq": 37}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " the final bullet"}, "seq": 38}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " list."}, "seq": 39}
+{"type": "message.delta", "session_id": "rt-capture", "payload": {"text": "I"}, "seq": 40}
+{"type": "message.delta", "session_id": "rt-capture", "payload": {"text": "'ll run two"}, "seq": 41}
+{"type": "message.delta", "session_id": "rt-capture", "payload": {"text": " separate"}, "seq": 42}
+{"type": "message.delta", "session_id": "rt-capture", "payload": {"text": " `"}, "seq": 43}
+{"type": "message.delta", "session_id": "rt-capture", "payload": {"text": "echo` commands in"}, "seq": 44}
+{"type": "message.delta", "session_id": "rt-capture", "payload": {"text": " your shell"}, "seq": 45}
+{"type": "message.delta", "session_id": "rt-capture", "payload": {"text": " and"}, "seq": 46}
+{"type": "message.delta", "session_id": "rt-capture", "payload": {"text": " then list"}, "seq": 47}
+{"type": "message.delta", "session_id": "rt-capture", "payload": {"text": " their outputs."}, "seq": 48}
+{"type": "tool.generating", "session_id": "rt-capture", "payload": {"name": "terminal"}, "seq": 49}
+{"type": "thinking.delta", "session_id": "rt-capture", "payload": {"text": ""}, "seq": 50}
+{"type": "reasoning.available", "session_id": "rt-capture", "payload": {"text": "I'll run two separate `echo` commands in your shell and then list their outputs."}, "seq": 51}
+{"type": "message.interim", "session_id": "rt-capture", "payload": {"text": "I'll run two separate `echo` commands in your shell and then list their outputs.", "already_streamed": true}, "seq": 52}
+{"type": "tool.start", "session_id": "rt-capture", "payload": {"tool_id": "call_qq1wh7hy", "name": "terminal", "context": "echo alpha", "args": {"command": "echo alpha"}}, "seq": 53}
+{"type": "session.title", "session_id": "rt-capture", "payload": {"session_id": "20261021_000000_capture", "title": "Test mobile client tool calls"}, "seq": 54}
+{"type": "session.usage", "session_id": "rt-capture", "payload": {"usage": {"model": "glm-5.3-flash", "input": 5685, "output": 149, "reasoning": 0, "prompt": 14645, "completion": 149, "total": 14794, "calls": 1, "context_used": 14645, "context_max": 1048576, "context_percent": 1, "context_source": "provider_usage", "context_estimated": false, "compressions": 0, "cache_hit_pct": 61, "avg_latency_s": 2.5, "avg_tps": 58.5, "active_subagents": 0}}, "seq": 55}
+{"type": "tool.complete", "session_id": "rt-capture", "payload": {"tool_id": "call_qq1wh7hy", "name": "terminal", "args": {"command": "echo alpha"}, "duration_s": 1.2656359672546387, "result": {"output": "alpha", "exit_code": 0, "error": null}}, "seq": 56}
+{"type": "thinking.delta", "session_id": "rt-capture", "payload": {"text": "٩(๑❛ᴗ❛๑)۶ reflecting..."}, "seq": 57}
+{"type": "thinking.delta", "session_id": "rt-capture", "payload": {"text": ""}, "seq": 58}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": "First"}, "seq": 59}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " command"}, "seq": 60}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " done. Now the second one"}, "seq": 61}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": ", as a"}, "seq": 62}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " separate call."}, "seq": 63}
+{"type": "tool.generating", "session_id": "rt-capture", "payload": {"name": "terminal"}, "seq": 64}
+{"type": "thinking.delta", "session_id": "rt-capture", "payload": {"text": ""}, "seq": 65}
+{"type": "tool.start", "session_id": "rt-capture", "payload": {"tool_id": "call_4t19kb03", "name": "terminal", "context": "echo beta", "args": {"command": "echo beta"}}, "seq": 66}
+{"type": "session.usage", "session_id": "rt-capture", "payload": {"usage": {"model": "glm-5.3-flash", "input": 6037, "output": 175, "reasoning": 0, "prompt": 29461, "completion": 175, "total": 29636, "calls": 2, "context_used": 14816, "context_max": 1048576, "context_percent": 1, "context_source": "provider_usage", "context_estimated": false, "compressions": 0, "cache_hit_pct": 80, "avg_latency_s": 1.8, "avg_tps": 48.4, "active_subagents": 0}}, "seq": 67}
+{"type": "tool.complete", "session_id": "rt-capture", "payload": {"tool_id": "call_4t19kb03", "name": "terminal", "args": {"command": "echo beta"}, "duration_s": 0.37944698333740234, "result": {"output": "beta", "exit_code": 0, "error": null}}, "seq": 68}
+{"type": "thinking.delta", "session_id": "rt-capture", "payload": {"text": "(¬‿¬) pondering..."}, "seq": 69}
+{"type": "thinking.delta", "session_id": "rt-capture", "payload": {"text": ""}, "seq": 70}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": "Both"}, "seq": 71}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " commands ran as"}, "seq": 72}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " two"}, "seq": 73}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " separate calls. Now the short"}, "seq": 74}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " Markdown bullet list with"}, "seq": 75}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " each output"}, "seq": 76}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " in inline code."}, "seq": 77}
+{"type": "message.delta", "session_id": "rt-capture", "payload": {"text": "\n\n-"}, "seq": 78}
+{"type": "message.delta", "session_id": "rt-capture", "payload": {"text": " `alpha`"}, "seq": 79}
+{"type": "message.delta", "session_id": "rt-capture", "payload": {"text": "\n- `beta`"}, "seq": 80}
+{"type": "thinking.delta", "session_id": "rt-capture", "payload": {"text": ""}, "seq": 81}
+{"type": "reasoning.available", "session_id": "rt-capture", "payload": {"text": "- `alpha`\n- `beta`"}, "seq": 82}
+{"type": "message.complete", "session_id": "rt-capture", "payload": {"text": "- `alpha`\n- `beta`", "usage": {"model": "glm-5.3-flash", "input": 6309, "output": 206, "reasoning": 0, "prompt": 44325, "completion": 206, "total": 44531, "calls": 3, "context_used": 14864, "context_max": 1048576, "context_percent": 1, "context_source": "provider_usage", "context_estimated": false, "compressions": 0, "cache_hit_pct": 86, "avg_latency_s": 1.6, "avg_tps": 42.5, "active_subagents": 0}, "status": "complete", "persisted_turn": {"row_ids": [54, 55, 56, 57, 58, 59], "complete": true, "user_row_id": 54, "final_assistant_row_id": 59}, "reasoning": "Both commands ran as two separate calls. Now the short Markdown bullet list with each output in inline code."}, "seq": 83}
+{"type": "session.info", "session_id": "rt-capture", "payload": {"model": "glm-5.3-flash", "provider": "ollama-cloud", "running": false, "turn_started_at": null, "title": "Test mobile client tool calls", "stored_session_id": "20261021_000000_capture"}, "seq": 84}

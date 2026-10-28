@@ -1,0 +1,211 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "a230ae6ee0d5a166f611185dff3dbdd0",
+    "entities": [
+      {
+        "tableName": "cached_session",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`dashboardId` TEXT NOT NULL, `profile` TEXT NOT NULL, `archived` INTEGER NOT NULL, `id` TEXT NOT NULL, `position` INTEGER NOT NULL, `title` TEXT, `preview` TEXT, `model` TEXT, `source` TEXT, `startedAtMs` INTEGER, `lastActiveAtMs` INTEGER, `messageCount` INTEGER NOT NULL, `pinned` INTEGER NOT NULL, `unread` INTEGER NOT NULL, `parentSessionId` TEXT, PRIMARY KEY(`dashboardId`, `profile`, `archived`, `id`))",
+        "fields": [
+          {
+            "fieldPath": "dashboardId",
+            "columnName": "dashboardId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "profile",
+            "columnName": "profile",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "archived",
+            "columnName": "archived",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "position",
+            "columnName": "position",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "preview",
+            "columnName": "preview",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "model",
+            "columnName": "model",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "source",
+            "columnName": "source",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "startedAtMs",
+            "columnName": "startedAtMs",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "lastActiveAtMs",
+            "columnName": "lastActiveAtMs",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "messageCount",
+            "columnName": "messageCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pinned",
+            "columnName": "pinned",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "unread",
+            "columnName": "unread",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "parentSessionId",
+            "columnName": "parentSessionId",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "dashboardId",
+            "profile",
+            "archived",
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "cached_transcript",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`dashboardId` TEXT NOT NULL, `profile` TEXT NOT NULL, `sessionId` TEXT NOT NULL, `resolvedId` TEXT NOT NULL, `rowsJson` TEXT NOT NULL, `hasOlder` INTEGER NOT NULL, `savedAtMs` INTEGER NOT NULL, PRIMARY KEY(`dashboardId`, `profile`, `sessionId`))",
+        "fields": [
+          {
+            "fieldPath": "dashboardId",
+            "columnName": "dashboardId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "profile",
+            "columnName": "profile",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sessionId",
+            "columnName": "sessionId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "resolvedId",
+            "columnName": "resolvedId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "rowsJson",
+            "columnName": "rowsJson",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "hasOlder",
+            "columnName": "hasOlder",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "savedAtMs",
+            "columnName": "savedAtMs",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "dashboardId",
+            "profile",
+            "sessionId"
+          ]
+        }
+      },
+      {
+        "tableName": "waiting_message",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`dashboardId` TEXT NOT NULL, `profile` TEXT NOT NULL, `chatKey` TEXT NOT NULL, `text` TEXT NOT NULL, `typedAtMs` INTEGER NOT NULL, PRIMARY KEY(`dashboardId`, `profile`, `chatKey`))",
+        "fields": [
+          {
+            "fieldPath": "dashboardId",
+            "columnName": "dashboardId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "profile",
+            "columnName": "profile",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "chatKey",
+            "columnName": "chatKey",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "text",
+            "columnName": "text",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "typedAtMs",
+            "columnName": "typedAtMs",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "dashboardId",
+            "profile",
+            "chatKey"
+          ]
+        }
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a230ae6ee0d5a166f611185dff3dbdd0')"
+    ]
+  }
+}

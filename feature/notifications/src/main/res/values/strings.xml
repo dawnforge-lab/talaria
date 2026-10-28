@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feature_notifications_title">Notifications</string>
+    <string name="feature_notifications_back">Back</string>
+    <string name="feature_notifications_intro">Get a notification when Hermes finishes a reply, needs your approval or an answer, or a turn fails, even while the app is closed. Notifications are end-to-end encrypted: the push relay and Google only see that something arrived.</string>
+    <string name="feature_notifications_all">Notifications for every profile</string>
+    <string name="feature_notifications_all_help">Every profile and bot on this Hermes notifies this phone. Leave one out below.</string>
+    <string name="feature_notifications_choices">Notify me about</string>
+    <string name="feature_notifications_profiles">Profiles</string>
+    <string name="feature_notifications_elsewhere_short">Notifies another phone. Hermes notifies one phone per profile.</string>
+    <string name="feature_notifications_turn_off">Turn off</string>
+    <string name="feature_notifications_move_here">Move to this phone</string>
+    <string name="feature_notifications_relay">Push relay</string>
+    <string name="feature_notifications_background_title">Android limits this app in the background</string>
+    <string name="feature_notifications_background_body">A few seconds after you leave the app, Android cuts its network. A message or a reply still on its way is finished in the background for up to three minutes, and replies come as notifications. To keep it connected longer, allow the app unrestricted battery use in its settings.</string>
+    <string name="feature_notifications_background_autostart">On this phone, also turn on Autostart there, or notifications may stop once the app is closed.</string>
+    <string name="feature_notifications_background_open">Open the app\'s settings</string>
+    <string name="feature_notifications_relay_help">The relay that hands notifications to Google. It sees only sealed messages.</string>
+    <string name="feature_notifications_permission_denied">Notifications are turned off for this app. Allow them in Android\'s settings, then try again.</string>
+    <string name="feature_notifications_open_settings">Open settings</string>
+    <string name="feature_notifications_channels">Sound and pop-ups for each kind</string>
+    <string name="feature_notifications_dashboard">On %1$s</string>
+    <string name="feature_notifications_others">Other dashboards</string>
+    <string name="feature_notifications_other">%1$s on %2$s</string>
+    <string name="feature_notifications_type_replies">Replies</string>
+    <string name="feature_notifications_type_approvals">Approvals</string>
+    <string name="feature_notifications_type_questions">Questions</string>
+    <string name="feature_notifications_type_failures">Failed turns</string>
+    <string name="feature_notifications_type_background">Background jobs</string>
+    <string name="feature_notifications_show_text">Show message text</string>
+
+    <string name="feature_notifications_no_firebase">This build of the app has no push settings, so it can\'t receive notifications.</string>
+    <string name="feature_notifications_plugin_missing">This Hermes doesn\'t have the talaria_push plugin. Install it on the Hermes host (hermes plugins install dawnforge-lab/talaria-plugin --enable), then try again.</string>
+    <string name="feature_notifications_no_relay">Enter the push relay\'s https:// address.</string>
+    <string name="feature_notifications_no_token">Google Play services didn\'t give this phone a push token. Check that Play services is installed and up to date, and that you\'re online.</string>
+    <string name="feature_notifications_no_token_reason">Google said: %1$s</string>
+    <string name="feature_notifications_challenge">The relay\'s check of this phone didn\'t arrive. Check your connection and try again.</string>
+    <string name="feature_notifications_relay_unreachable">The push relay can\'t be reached. Check its address and your connection.</string>
+    <string name="feature_notifications_relay_no_android">This push relay can\'t send to Android phones.</string>
+    <string name="feature_notifications_relay_app">This push relay doesn\'t accept this app.</string>
+    <string name="feature_notifications_relay_token">Google refused this phone\'s push token. Try again in a moment.</string>
+    <string name="feature_notifications_relay_busy">The push relay asked to slow down. Try again in a minute.</string>
+    <string name="feature_notifications_relay_failed">The push relay refused (%1$s).</string>
+    <string name="feature_notifications_sources_title">Replies to messages from</string>
+    <string name="feature_notifications_sources_intro">A reply to a message sent from a source turned off here sends no reply notification. This applies to every profile on this phone.</string>
+    <string name="feature_notifications_source_app">This app</string>
+    <string name="feature_notifications_source_desktop">Hermes Desktop and web</string>
+    <string name="feature_notifications_source_messaging">Messaging apps</string>
+    <string name="feature_notifications_source_terminal">Terminal</string>
+    <string name="feature_notifications_sources_failed">Couldn\'t read or change which replies notify. %1$s</string>
+    <string name="feature_notifications_check_title">Check notifications</string>
+    <string name="feature_notifications_check_intro">Run these on the Hermes host for this profile: first check its pairing, then send a test. It should arrive here within a few seconds. Tap one to copy it.</string>
+    <string name="feature_notifications_check_status">Check the pairing</string>
+    <string name="feature_notifications_check_test">Send a test notification</string>
+    <string name="feature_notifications_check_copied">Copied</string>
+</resources>

@@ -1,0 +1,156 @@
+{
+  "source": "talaria-plugin e2e.py",
+  "kid": "0123456789abcdef0123456789abcdef",
+  "secret": "AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8",
+  "installation_id": "11111111-2222-3333-4444-555555555555",
+  "gateway_id": "8c0e9f52-3b6d-4c1a-9e47-2f5d6a7b8c90",
+  "keys": {
+    "push": "3c34d3203f9f6d9d82e7f42a7931f66c3373f6cf250dc5f2a698a864cc6fddd3",
+    "answer": "da69a8e9681a10a4dc98e44efb4fd84e33aa12582055838cbbc9e28e3eb0c245",
+    "meta": "93bc2ba501b4571c17e61d7f8cc51dba8da31ce7f45b17fbd733d42c64ae16e7"
+  },
+  "thread_token": {
+    "seed": "sess-1",
+    "token": "bfe33c40a5094617"
+  },
+  "keyed_event_id": {
+    "event_id": "response:0123456789abcdef",
+    "keyed": "response:36bca5550dc302d31413fd669c2a66ea"
+  },
+  "events": [
+    {
+      "type": "response.ready",
+      "envelope": {
+        "v": 1,
+        "kid": "0123456789abcdef0123456789abcdef",
+        "msg": "response:36bca5550dc302d31413fd669c2a66ea",
+        "iat": 1761000000,
+        "tok": "bfe33c40a5094617",
+        "z": 1,
+        "req": "",
+        "n": "AQEBAQEBAQEBAQEB",
+        "ct": "d_SVxPPiz0rD-QaFFecbZV96v310FeEAsKSltPR9hrRRLFDjpB26kwsvKQ03zEZNWRgTeYkhA9wssvjK4a1AKUxR9B3mDBxTwZr6fmqYcEBHRJ5glRAtSDaRcYOwt6PEhRlMHFzjh8wJjMQ7OZLgvxTIxDxWT8qwIuJG-QrsIaXp9JZx7fMX_WFVQnCyIiYIueNS_I0RpO8kw-593xcQrRLK"
+      },
+      "inner": {
+        "title": "Refactor the parser",
+        "body": "Done. The parser now streams tokens and keeps line numbers. The parser now streams tokens and keeps line numbers. The parser now streams tokens and keeps line numbers. The parser now streams tokens and keeps line numbers. The parser now streams tokens and keeps line numbers. The parser now streams tokens and keeps line numbers. ",
+        "session_id": "sess-1",
+        "profile": "default",
+        "stored_session_id": "20261021_120000_abcdef"
+      }
+    },
+    {
+      "type": "turn.failed",
+      "envelope": {
+        "v": 1,
+        "kid": "0123456789abcdef0123456789abcdef",
+        "msg": "turn:87fe74104946a7d6b646f32c2e2fb179",
+        "iat": 1761000000,
+        "tok": "5ac408507eb38da3",
+        "z": 0,
+        "req": "",
+        "n": "AgICAgICAgICAgIC",
+        "ct": "VUk1H86CuKz6wCV-lE1APZyuAx3ZRydcoFQoX87EYA"
+      },
+      "inner": {
+        "body": "Zq9!"
+      }
+    },
+    {
+      "type": "input.needed",
+      "envelope": {
+        "v": 1,
+        "kid": "0123456789abcdef0123456789abcdef",
+        "msg": "input:27d1baca5af353f65e7dabb87316b90f",
+        "iat": 1761000000,
+        "tok": "bfe33c40a5094617",
+        "z": 1,
+        "req": "talaria-push-abc123def456",
+        "n": "AwMDAwMDAwMDAwMD",
+        "ct": "OpOHq_cYmYGiEF_MJqfr0WKeg3WtO7JiFTJoHTK8AIi1z2UhjfOv5v-fSpLVNv-cp8KPMHkb5BXf2g8mkmOFyHAbLFD4L5kQZIJf9K-nmQWyAY3E-JKJMp8iNYF6dy1rMr8VEc_mCfitLW8pXYy_YbiFLcG--5Q86Xx5L6dGolBLOfdjRzxWvhgztk_Qh9kreN9nx63KgPODQDRh"
+      },
+      "inner": {
+        "body": "Deploy to prod?",
+        "session_id": "sess-1",
+        "profile": "default",
+        "decision": {
+          "kind": "clarify",
+          "request_id": "talaria-push-abc123def456",
+          "question": "Deploy to prod?",
+          "choices": [
+            "Yes",
+            "No"
+          ]
+        }
+      }
+    },
+    {
+      "type": "approval.needed",
+      "envelope": {
+        "v": 1,
+        "kid": "0123456789abcdef0123456789abcdef",
+        "msg": "approval:6f829de0a514c054905d0246a6ea255b",
+        "iat": 1761000000,
+        "tok": "bfe33c40a5094617",
+        "z": 1,
+        "req": "",
+        "n": "BAQEBAQEBAQEBAQE",
+        "ct": "BJGoSUT9E1Ur2jT8DXto9evmamJ_8ncZMseleu1AmmnLyNos549KqMHPpGkgXJ4t9QK6afgeyfVrE1uGJKPbbkf-lD0RtooCCgB-MZS1Iz7WM2t9W3rPjrOYsxdUSTNIxZidiaM2yr4Aj9fn55p7mNpe0zmrnsvRJrInluTseZ5sh9ux4U1ig8ojDb-mUWoVJtDSgHtmreIQHdx8h2kjOVshzllO3g"
+      },
+      "inner": {
+        "title": "Approval needed · Infra",
+        "body": "rm -rf build/",
+        "session_id": "sess-1",
+        "profile": "default",
+        "decision": {
+          "kind": "approval",
+          "session_key": "sess-1",
+          "description": "rm -rf build/",
+          "choices": [
+            "once",
+            "session",
+            "always",
+            "deny"
+          ]
+        }
+      }
+    },
+    {
+      "type": "call.requested",
+      "envelope": {
+        "v": 1,
+        "kid": "0123456789abcdef0123456789abcdef",
+        "msg": "call:661345acdfbd18171a2b4423cb1c836e",
+        "iat": 1761000000,
+        "tok": "bfe33c40a5094617",
+        "z": 1,
+        "req": "",
+        "n": "BQUFBQUFBQUFBQUF",
+        "ct": "x-wkRnZ72ukvGozv_tRuQ2movW9EyJ3zevNFtijqBosLW3EJPsgpHSq2EraQ_8-VA2E26dqmfdjeYkrzbYiHwYcfLG6_3C5cXhEi62-_-GjbZ2fYsUjDRBwbToKb98r0WT1D4UlOXZpMZluVavZ7BgwPVWRii2Tz0MzBBCUKsaSWo9pDD51owkjvuYeLjm8GQI8r3rpIXpDanoxKEOXoOFTi7bIXdBQdh5Ui52F1eI7cQZgDwFNELv7HabAuVAJGoSPhVOm2myKmfaW6cltvmDIBaARSlWaw0Kt_lR_E"
+      },
+      "inner": {
+        "title": "Hermes wants to talk",
+        "body": "“Check the server” finished.",
+        "session_id": "sess-1",
+        "profile": "default",
+        "stored_session_id": "20261021_120000_abcdef",
+        "call": {
+          "id": "0123456789abcdef01234567",
+          "kind": "done",
+          "title": "Check the server",
+          "session_ids": [
+            "sess-1",
+            "20261021_120000_abcdef"
+          ],
+          "reason": "The deploy is live."
+        }
+      }
+    }
+  ],
+  "answer": {
+    "text": "Yes",
+    "request_id": "talaria-push-abc123def456",
+    "question_id": "q1",
+    "sealed": "e2e1.0123456789abcdef0123456789abcdef.BwcHBwcHBwcHBwcH.c3L233ZBvK_jjJnrVdFUYQ3k-Q"
+  }
+}

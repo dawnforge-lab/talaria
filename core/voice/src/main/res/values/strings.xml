@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="core_voice_channel">Voice conversation</string>
+    <string name="core_voice_channel_description">Shown while a voice conversation with Hermes is going.</string>
+    <string name="core_voice_notification_title">Voice conversation</string>
+    <string name="core_voice_notification_text">Hermes is listening and answering out loud.</string>
+    <string name="core_voice_end">End</string>
+    <string name="core_voice_read_aloud">Read aloud</string>
+    <string name="core_voice_read_aloud_channel_description">The reply being read aloud, with its controls.</string>
+    <string name="core_voice_read_aloud_pause">Pause</string>
+    <string name="core_voice_read_aloud_play">Play</string>
+    <string name="core_voice_read_aloud_stop">Stop</string>
+</resources>

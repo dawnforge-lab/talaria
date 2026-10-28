@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="core_data_sign_in_channel">Signing in</string>
+    <string name="core_data_sign_in_notification">Signing in to Hermes in the browser…</string>
+    <string name="core_data_finish_channel">Finishing with Hermes</string>
+    <string name="core_data_finish_notification">Finishing with Hermes: your message, or its reply…</string>
+    <string name="core_data_shortcut_new_chat">New chat</string>
+    <string name="core_data_shortcut_talk">Talk</string>
+    <string name="core_data_alarm_alarm">Alarm</string>
+    <string name="core_data_alarm_timer">Timer</string>
+    <string name="core_data_alarm_from_hermes">Set by Hermes</string>
+    <string name="core_data_alarm_stop">Stop</string>
+    <string name="core_data_alarm_channel">Alarms and timers</string>
+    <string name="core_data_alarm_channel_detail">The alarms and timers Hermes sets on this phone</string>
+    <string name="core_data_locate_channel">Location requests</string>
+    <string name="core_data_locate_notification">Hermes is checking where you are</string>
+    <string name="core_data_maps_channel">Directions</string>
+    <string name="core_data_maps_notification_title">Directions to %1$s</string>
+    <string name="core_data_maps_notification_body">Tap to open Maps.</string>
+    <string name="core_data_maps_failed">Couldn\'t find that place in Maps.</string>
+</resources>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- What went wrong talking to a dashboard, for every screen. -->
+    <string name="core_ui_error_empty">Enter the dashboard\'s address.</string>
+    <string name="core_ui_error_scheme">Use an http:// or https:// address.</string>
+    <string name="core_ui_error_malformed">That doesn\'t look like an address.</string>
+    <string name="core_ui_error_credentials_in_address">Leave the username and password out of the address.</string>
+    <string name="core_ui_error_query">Remove anything after ? or # from the address.</string>
+    <string name="core_ui_error_insecure">Plain http only works on a home network or Tailscale. Use https:// for this address.</string>
+    <string name="core_ui_error_host_not_found">Couldn\'t find that address. Check it, and that this phone is on the right network or signed in to Tailscale.</string>
+    <string name="core_ui_error_refused">Nothing answered at that address. Check that the dashboard is running and the port is right.</string>
+    <string name="core_ui_error_timeout">The dashboard took too long to answer.</string>
+    <string name="core_ui_error_tls">The secure connection failed, usually because of the certificate. If you use your own certificate authority, install its certificate on this phone.</string>
+    <string name="core_ui_error_network">Network error: %1$s</string>
+    <string name="core_ui_error_network_unknown">Network error.</string>
+    <string name="core_ui_error_not_dashboard">That address answered, but it isn\'t a Hermes dashboard. Check the port (9119 by default).</string>
+    <string name="core_ui_error_unavailable">The dashboard isn\'t available right now (HTTP %1$d). It may still be starting.</string>
+    <string name="core_ui_error_interactive">This dashboard is behind a sign-in page that needs a browser, which this version can\'t do yet.</string>
+    <string name="core_ui_error_cloudflare">Cloudflare Access rejected the service token.</string>
+    <string name="core_ui_error_no_method">The dashboard has no sign-in set up. Set HERMES_DASHBOARD_BASIC_AUTH_USERNAME and HERMES_DASHBOARD_BASIC_AUTH_PASSWORD on the host.</string>
+    <string name="core_ui_error_sign_in_disabled">This dashboard has sign-in turned off, so Hermes only lets the computer it runs on connect. To use it from a phone, on the Hermes host: set HERMES_DASHBOARD_BASIC_AUTH_USERNAME and HERMES_DASHBOARD_BASIC_AUTH_PASSWORD in the .env file, set dashboard.public_url to the address you use here (or run the dashboard on your network address), then restart the dashboard.</string>
+    <string name="core_ui_error_oauth">This dashboard signs in only on its own page in a browser (through a sign-in proxy, or an older Hermes), which the app cannot use. Updating Hermes adds the sign-in the app uses.</string>
+    <string name="core_ui_error_browser_unfinished">The sign-in in the browser was not finished. Try again.</string>
+    <string name="core_ui_error_browser_refused">The sign-in was refused: %1$s</string>
+    <string name="core_ui_error_rejected">Wrong username or password.</string>
+    <string name="core_ui_error_rate_limited_unknown">Too many attempts. Wait a minute and try again.</string>
+    <string name="core_ui_error_sign_in_required">The session has expired. Sign in again.</string>
+    <string name="core_ui_error_refused_detail">The dashboard refused: %1$s</string>
+    <string name="core_ui_error_ticket">Signed in, but the dashboard didn\'t start a session.</string>
+    <string name="core_ui_error_ticket_detail">Signed in, but the dashboard didn\'t start a session: %1$s</string>
+    <string name="core_ui_error_unexpected">Unexpected answer from the dashboard (HTTP %1$d).</string>
+    <string name="core_ui_error_unexpected_unknown">Unexpected answer from the dashboard.</string>
+    <string name="core_ui_error_too_large">The file is too large for Hermes to send.</string>
+    <string name="core_ui_error_too_large_limit">The file is larger than %1$d MB, the most the phone takes.</string>
+    <string name="core_ui_error_not_found">The dashboard has no such chat any more. It may have been deleted elsewhere.</string>
+    <string name="core_ui_error_not_found_detail">Not found: %1$s</string>
+    <string name="core_ui_error_invalid">The dashboard did not accept that.</string>
+    <string name="core_ui_error_invalid_detail">The dashboard did not accept that: %1$s</string>
+    <plurals name="core_ui_error_rate_limited">
+        <item quantity="one">Too many attempts. Try again in %1$d second.</item>
+        <item quantity="other">Too many attempts. Try again in %1$d seconds.</item>
+    </plurals>
+    <!-- The live chat connection. -->
+    <string name="core_ui_live_connected">Live connection open since %1$s</string>
+    <string name="core_ui_live_connecting">Opening the live connection…</string>
+    <string name="core_ui_live_waiting">Live connection lost: %1$s Retrying in %2$d s.</string>
+    <string name="core_ui_live_sign_in">The live connection needs you to sign in again.</string>
+    <string name="core_ui_live_stopped">Live connection closed. It reopens when the app is in front.</string>
+    <string name="core_ui_live_reason_refused">the dashboard refused it.</string>
+    <string name="core_ui_live_reason_silent">it stopped responding.</string>
+    <string name="core_ui_live_reason_closed">the dashboard closed it.</string>
+    <string name="core_ui_error_owned_elsewhere">This chat is open in another Hermes app.</string>
+    <string name="core_ui_live_held">Live connection waiting for a repair: %1$s</string>
+    <string name="core_ui_live_repair">Repair connection</string>
+    <string name="core_ui_live_reconnect">Reconnect</string>
+</resources>

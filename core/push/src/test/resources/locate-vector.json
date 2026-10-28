@@ -1,0 +1,20 @@
+{
+  "type": "location.requested",
+  "envelope": {
+    "v": 1,
+    "kid": "0123456789abcdef0123456789abcdef",
+    "msg": "locate:aaea17c6e5b7e5e5733b162533764c3d",
+    "iat": 1792800000,
+    "tok": "fff7e991da39cf62",
+    "z": 1,
+    "req": "",
+    "n": "BgYGBgYGBgYGBgYG",
+    "ct": "PCkJzHqvVNwB0AqWxG7QlCfqSv6kcTVykm1kN3vaSF0gIvBkjhdGqhvn9VFILgKdk6rN3-24OKkdkC32hnoOVDzlsuVxNc9eKO5XUw"
+  },
+  "inner": {
+    "profile": "default",
+    "locate": {
+      "id": "l_vectorLocate0123456789"
+    }
+  }
+}

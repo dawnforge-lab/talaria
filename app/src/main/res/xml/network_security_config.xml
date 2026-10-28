@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Plain http is permitted here because Android cannot express "private networks and Tailscale"
+    as a rule (domain-config takes host names, not IP ranges). The app enforces that rule itself
+    before any request: ConnectionUrlPolicy in core:net allows http only for loopback, RFC 1918
+    addresses, 100.64.0.0/10 and *.ts.net, and https everywhere else.
+
+    The system's certificate authorities are trusted, and, as on iOS, those the user installs on
+    the phone: a self-hoster's own authority (Caddy's internal one, step-ca, a company's) works
+    once its certificate is installed, which Android does only at the user's hand and with a
+    warning that the network may be monitored. TLS errors are never bypassed.
+-->
+<network-security-config xmlns:tools="http://schemas.android.com/tools">
+    <base-config
+        cleartextTrafficPermitted="true"
+        tools:ignore="InsecureBaseConfiguration,AcceptsUserCertificates">
+        <trust-anchors>
+            <certificates src="system" />
+            <certificates src="user" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>

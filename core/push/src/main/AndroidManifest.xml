@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- Calls from Hermes ring as the phone's own calls do: Telecom's self-managed calls, in a
+         phone-call foreground service, with the call screen over the lock screen. -->
+    <uses-permission android:name="android.permission.MANAGE_OWN_CALLS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_PHONE_CALL" />
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+    <!-- A running turn's notification may show as a Live Update (Android 16+). -->
+    <uses-permission android:name="android.permission.POST_PROMOTED_NOTIFICATIONS" />
+
+    <application>
+        <!-- Pushes from the Talaria relay: token challenges and Hermes notifications. -->
+        <service
+            android:name=".HermesMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <!-- A call from Hermes, ringing. -->
+        <service
+            android:name=".calls.HermesCallService"
+            android:exported="false"
+            android:foregroundServiceType="phoneCall" />
+
+        <!-- Allow, Deny, a choice or a typed reply on a notification. -->
+        <receiver
+            android:name=".PushActionReceiver"
+            android:exported="false" />
+
+        <!-- Firebase is started from code with this build's options (FirebasePushTokens), not from
+             resources the Google Services plugin would generate. -->
+        <provider
+            android:name="com.google.firebase.provider.FirebaseInitProvider"
+            android:authorities="${applicationId}.firebaseinitprovider"
+            tools:node="remove" />
+        <!-- Register with the Firebase installation id (FCM's v1 registration): the token API
+             (getToken, onNewToken) is deprecated since firebase-messaging 25.1. -->
+        <meta-data
+            android:name="firebase_messaging_installation_id_enabled"
+            android:value="true" />
+        <meta-data
+            android:name="firebase_messaging_auto_init_enabled"
+            android:value="false" />
+        <meta-data
+            android:name="firebase_analytics_collection_deactivated"
+            android:value="true" />
+    </application>
+</manifest>

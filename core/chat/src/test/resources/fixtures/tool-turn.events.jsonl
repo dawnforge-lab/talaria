@@ -1,0 +1,33 @@
+{"type": "session.info", "session_id": "rt-capture", "payload": {"model": "glm-5.3-flash", "provider": "ollama-cloud", "running": true, "turn_started_at": 1792598092.8041239, "title": "", "stored_session_id": "20261021_000000_capture"}, "seq": 1}
+{"type": "message.start", "session_id": "rt-capture", "seq": 2}
+{"type": "session.title", "session_id": "rt-capture", "payload": {"session_id": "20261021_000000_capture", "title": "This is an automated test of a mobile client…"}, "seq": 3}
+{"type": "thinking.delta", "session_id": "rt-capture", "payload": {"text": "(¬_¬) mulling..."}, "seq": 4}
+{"type": "thinking.delta", "session_id": "rt-capture", "payload": {"text": ""}, "seq": 5}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": "The"}, "seq": 6}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " user wants"}, "seq": 7}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " me to run a"}, "seq": 8}
+{"type": "session.title", "session_id": "rt-capture", "payload": {"session_id": "20261021_000000_capture", "title": "Run echo hermes-android-check test"}, "seq": 9}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " simple terminal"}, "seq": 10}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " command and"}, "seq": 11}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " report the"}, "seq": 12}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " output. This is a straightforward"}, "seq": 13}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " task"}, "seq": 14}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " -"}, "seq": 15}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " just execute"}, "seq": 16}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " `echo hermes-android-check"}, "seq": 17}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": "` and report what"}, "seq": 18}
+{"type": "reasoning.delta", "session_id": "rt-capture", "payload": {"text": " it printed."}, "seq": 19}
+{"type": "tool.generating", "session_id": "rt-capture", "payload": {"name": "terminal"}, "seq": 20}
+{"type": "thinking.delta", "session_id": "rt-capture", "payload": {"text": ""}, "seq": 21}
+{"type": "tool.start", "session_id": "rt-capture", "payload": {"tool_id": "call_ormvhnyu", "name": "terminal", "context": "echo hermes-android-check", "args": {"command": "echo hermes-android-check"}}, "seq": 22}
+{"type": "session.usage", "session_id": "rt-capture", "payload": {"usage": {"model": "glm-5.3-flash", "input": 14617, "output": 51, "reasoning": 0, "prompt": 14617, "completion": 51, "total": 14668, "calls": 1, "context_used": 14617, "context_max": 1048576, "context_percent": 1, "context_source": "provider_usage", "context_estimated": false, "compressions": 0, "avg_latency_s": 2.4, "avg_tps": 21.1, "active_subagents": 0}}, "seq": 23}
+{"type": "tool.complete", "session_id": "rt-capture", "payload": {"tool_id": "call_ormvhnyu", "name": "terminal", "args": {"command": "echo hermes-android-check"}, "duration_s": 2.6201717853546143, "result": {"output": "hermes-android-check", "exit_code": 0, "error": null}}, "seq": 24}
+{"type": "thinking.delta", "session_id": "rt-capture", "payload": {"text": "(¬‿¬) ruminating..."}, "seq": 25}
+{"type": "thinking.delta", "session_id": "rt-capture", "payload": {"text": ""}, "seq": 26}
+{"type": "message.delta", "session_id": "rt-capture", "payload": {"text": "\n\nIt printed `hermes-android"}, "seq": 27}
+{"type": "message.delta", "session_id": "rt-capture", "payload": {"text": "-check`."}, "seq": 28}
+{"type": "thinking.delta", "session_id": "rt-capture", "payload": {"text": ""}, "seq": 29}
+{"type": "reasoning.available", "session_id": "rt-capture", "payload": {"text": "It printed `hermes-android-check`."}, "seq": 30}
+{"type": "session.usage", "session_id": "rt-capture", "payload": {"usage": {"model": "glm-5.3-flash", "input": 14846, "output": 61, "reasoning": 0, "prompt": 29310, "completion": 61, "total": 29371, "calls": 2, "context_used": 14693, "context_max": 1048576, "context_percent": 1, "context_source": "provider_usage", "context_estimated": false, "compressions": 0, "cache_hit_pct": 49, "avg_latency_s": 2.0, "avg_tps": 15.5, "active_subagents": 0}}, "seq": 31}
+{"type": "message.complete", "session_id": "rt-capture", "payload": {"text": "It printed `hermes-android-check`.", "usage": {"model": "glm-5.3-flash", "input": 14846, "output": 61, "reasoning": 0, "prompt": 29310, "completion": 61, "total": 29371, "calls": 2, "context_used": 14693, "context_max": 1048576, "context_percent": 1, "context_source": "provider_usage", "context_estimated": false, "compressions": 0, "cache_hit_pct": 49, "avg_latency_s": 2.0, "avg_tps": 15.5, "active_subagents": 0}, "status": "complete", "persisted_turn": {"row_ids": [46, 47, 48, 49], "complete": true, "user_row_id": 46, "final_assistant_row_id": 49}, "reasoning": "The user wants me to run a simple terminal command and report the output. This is a straightforward task - just execute `echo hermes-android-check` and report what it printed."}, "seq": 32}
+{"type": "session.info", "session_id": "rt-capture", "payload": {"model": "glm-5.3-flash", "provider": "ollama-cloud", "running": false, "turn_started_at": null, "title": "Run echo hermes-android-check test", "stored_session_id": "20261021_000000_capture"}, "seq": 33}

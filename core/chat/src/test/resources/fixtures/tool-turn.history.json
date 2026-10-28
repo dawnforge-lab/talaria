@@ -1,0 +1,73 @@
+[
+ {
+  "id": 46,
+  "role": "user",
+  "content": "This is an automated test of a mobile client. Use your terminal tool to run `echo hermes-android-check`, then tell me in one short sentence what it printed.",
+  "tool_call_id": null,
+  "tool_calls": null,
+  "tool_name": null,
+  "timestamp": 1792598092.8378172,
+  "finish_reason": null,
+  "reasoning": null,
+  "reasoning_content": null,
+  "display_kind": null,
+  "display_metadata": null,
+  "session_id": "20261021_000000_capture"
+ },
+ {
+  "id": 47,
+  "role": "assistant",
+  "content": "",
+  "tool_call_id": null,
+  "tool_calls": [
+   {
+    "id": "call_ormvhnyu",
+    "call_id": "call_ormvhnyu",
+    "response_item_id": "fc_ormvhnyu",
+    "type": "function",
+    "function": {
+     "name": "terminal",
+     "arguments": "{\"command\":\"echo hermes-android-check\"}"
+    }
+   }
+  ],
+  "tool_name": null,
+  "timestamp": 1792598099.855573,
+  "finish_reason": "tool_calls",
+  "reasoning": "The user wants me to run a simple terminal command and report the output. This is a straightforward task - just execute `echo hermes-android-check` and report what it printed.",
+  "reasoning_content": "The user wants me to run a simple terminal command and report the output. This is a straightforward task - just execute `echo hermes-android-check` and report what it printed.",
+  "display_kind": null,
+  "display_metadata": null,
+  "session_id": "20261021_000000_capture"
+ },
+ {
+  "id": 48,
+  "role": "tool",
+  "content": "{\"output\": \"hermes-android-check\", \"exit_code\": 0, \"error\": null}",
+  "tool_call_id": "call_ormvhnyu",
+  "tool_calls": null,
+  "tool_name": "terminal",
+  "timestamp": 1792598102.5230296,
+  "finish_reason": null,
+  "reasoning": null,
+  "reasoning_content": null,
+  "display_kind": null,
+  "display_metadata": null,
+  "session_id": "20261021_000000_capture"
+ },
+ {
+  "id": 49,
+  "role": "assistant",
+  "content": "It printed `hermes-android-check`.",
+  "tool_call_id": null,
+  "tool_calls": null,
+  "tool_name": null,
+  "timestamp": 1792598104.0618331,
+  "finish_reason": "stop",
+  "reasoning": null,
+  "reasoning_content": null,
+  "display_kind": null,
+  "display_metadata": null,
+  "session_id": "20261021_000000_capture"
+ }
+]

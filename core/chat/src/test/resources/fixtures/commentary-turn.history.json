@@ -1,0 +1,114 @@
+[
+ {
+  "id": 54,
+  "role": "user",
+  "content": "This is an automated test of a mobile client. First tell me in one sentence what you are about to do. Then use your terminal tool twice, as two separate calls: run echo alpha, then run echo beta. Finally answer with a short Markdown bullet list of the two outputs, each in inline code.",
+  "tool_call_id": null,
+  "tool_calls": null,
+  "tool_name": null,
+  "timestamp": 1792598217.5837033,
+  "finish_reason": null,
+  "reasoning": null,
+  "reasoning_content": null,
+  "display_kind": null,
+  "display_metadata": null,
+  "session_id": "20261021_000000_capture"
+ },
+ {
+  "id": 55,
+  "role": "assistant",
+  "content": "I'll run two separate `echo` commands in your shell and then list their outputs.",
+  "tool_call_id": null,
+  "tool_calls": [
+   {
+    "id": "call_qq1wh7hy",
+    "call_id": "call_qq1wh7hy",
+    "response_item_id": "fc_qq1wh7hy",
+    "type": "function",
+    "function": {
+     "name": "terminal",
+     "arguments": "{\"command\":\"echo alpha\"}"
+    }
+   }
+  ],
+  "tool_name": null,
+  "timestamp": 1792598223.133669,
+  "finish_reason": "tool_calls",
+  "reasoning": "The user wants a specific sequence: first a one-sentence statement of what I'm about to do, then two separate terminal calls (echo alpha, then echo beta), and finally a short Markdown bullet list of the two outputs in inline code. No skills are relevant here — this is a simple scripted test of tool-call sequencing. I'll answer with the one-sentence intro, then issue the first terminal call. Since the user explicitly requires two separate calls, I must not batch them — I'll wait for the result of the first before issuing the second, then produce the final bullet list.",
+  "reasoning_content": "The user wants a specific sequence: first a one-sentence statement of what I'm about to do, then two separate terminal calls (echo alpha, then echo beta), and finally a short Markdown bullet list of the two outputs in inline code. No skills are relevant here — this is a simple scripted test of tool-call sequencing. I'll answer with the one-sentence intro, then issue the first terminal call. Since the user explicitly requires two separate calls, I must not batch them — I'll wait for the result of the first before issuing the second, then produce the final bullet list.",
+  "display_kind": null,
+  "display_metadata": null,
+  "session_id": "20261021_000000_capture"
+ },
+ {
+  "id": 56,
+  "role": "tool",
+  "content": "{\"output\": \"alpha\", \"exit_code\": 0, \"error\": null}",
+  "tool_call_id": "call_qq1wh7hy",
+  "tool_calls": null,
+  "tool_name": "terminal",
+  "timestamp": 1792598224.4028347,
+  "finish_reason": null,
+  "reasoning": null,
+  "reasoning_content": null,
+  "display_kind": null,
+  "display_metadata": null,
+  "session_id": "20261021_000000_capture"
+ },
+ {
+  "id": 57,
+  "role": "assistant",
+  "content": "",
+  "tool_call_id": null,
+  "tool_calls": [
+   {
+    "id": "call_4t19kb03",
+    "call_id": "call_4t19kb03",
+    "response_item_id": "fc_4t19kb03",
+    "type": "function",
+    "function": {
+     "name": "terminal",
+     "arguments": "{\"command\":\"echo beta\"}"
+    }
+   }
+  ],
+  "tool_name": null,
+  "timestamp": 1792598225.4768484,
+  "finish_reason": "tool_calls",
+  "reasoning": "First command done. Now the second one, as a separate call.",
+  "reasoning_content": "First command done. Now the second one, as a separate call.",
+  "display_kind": null,
+  "display_metadata": null,
+  "session_id": "20261021_000000_capture"
+ },
+ {
+  "id": 58,
+  "role": "tool",
+  "content": "{\"output\": \"beta\", \"exit_code\": 0, \"error\": null}",
+  "tool_call_id": "call_4t19kb03",
+  "tool_calls": null,
+  "tool_name": "terminal",
+  "timestamp": 1792598225.861853,
+  "finish_reason": null,
+  "reasoning": null,
+  "reasoning_content": null,
+  "display_kind": null,
+  "display_metadata": null,
+  "session_id": "20261021_000000_capture"
+ },
+ {
+  "id": 59,
+  "role": "assistant",
+  "content": "- `alpha`\n- `beta`",
+  "tool_call_id": null,
+  "tool_calls": null,
+  "tool_name": null,
+  "timestamp": 1792598227.0984483,
+  "finish_reason": "stop",
+  "reasoning": "Both commands ran as two separate calls. Now the short Markdown bullet list with each output in inline code.",
+  "reasoning_content": "Both commands ran as two separate calls. Now the short Markdown bullet list with each output in inline code.",
+  "display_kind": null,
+  "display_metadata": null,
+  "session_id": "20261021_000000_capture"
+ }
+]

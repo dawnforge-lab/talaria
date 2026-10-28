@@ -1,0 +1,28 @@
+# Gradle
+.gradle/
+build/
+.kotlin/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Local configuration
+local.properties
+*.keystore
+*.jks
+keystore.properties
+
+# Android Studio / IntelliJ
+.idea/
+*.iml
+captures/
+.externalNativeBuild/
+.cxx/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test dashboard credentials for manual and live checks; never committed
+hermes-test.properties
+
+# Firebase settings for push (from the Firebase console); never committed
+app/google-services.json
