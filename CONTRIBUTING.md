@@ -39,6 +39,13 @@ each: done (link the PR), not needed (and why), or left open.
 - Match the code around you: its naming, its comment density, and comments that say why rather
   than what. ktlint settles formatting.
 
+## Reviews
+
+Each pull request gets an automated review: an AI model reads the diff and posts its findings
+as one comment, updated on every push. It's advice, not a gate: the maintainer reviews every
+PR and does the merging. PRs from forks are reviewed once a maintainer has read them and added
+the `run-review` label. `main` only changes through pull requests whose checks pass.
+
 ## Good first issues
 
 Issues labelled [good first issue](https://github.com/dawnforge-lab/talaria/labels/good%20first%20issue)
