@@ -12,6 +12,19 @@ Talaria are the winged sandals of Hermes.
 has one maintainer and no promise of support. Issues and pull requests are welcome, and so are
 co-maintainers. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
+## Screenshots
+
+<p>
+  <img src="docs/screenshots/chat-tools.png" width="250" alt="A reply in progress, with two finished web searches and the turn still working">
+  <img src="docs/screenshots/chart-card.png" width="250" alt="A chart card of Lisbon's average monthly temperatures, drawn by the app">
+  <img src="docs/screenshots/bots.png" width="250" alt="The bots list: each profile as a bot, with group chats below">
+</p>
+<p>
+  <img src="docs/screenshots/group-chat.png" width="250" alt="A group chat where the researcher and writer bots plan a Saturday in Lisbon">
+  <img src="docs/screenshots/call.png" width="250" alt="Hermes calling the phone to remind its user to stretch and drink water">
+  <img src="docs/screenshots/call-answered.png" width="250" alt="The answered call: Hermes says why it called and listens">
+</p>
+
 ## What it does
 
 - **Sign-in:** add a dashboard by address, `talaria://connect` setup link or QR code; password or
