@@ -16,6 +16,9 @@ class MarkdownCleanupTest {
         assertEquals("a b | c\n---|---\nd e | f", prepareMarkdown("a<br>b | c\n---|---\nd<br>e | f"))
         // A line with a pipe that isn't in a table is prose.
         assertEquals("x | y\nz", prepareMarkdown("x | y<br>z"))
+        // At either end of a line it is that line's own break, not a blank line.
+        assertEquals("one\ntwo", prepareMarkdown("one<br>\ntwo"))
+        assertEquals("one\ntwo", prepareMarkdown("one\n<br/>two"))
     }
 
     @Test
@@ -52,6 +55,19 @@ class MarkdownCleanupTest {
         assertEquals("Use `Vec<u8>` and `a&amp;b`", prepareMarkdown("Use `Vec<u8>` and `a&amp;b`"))
         val fence = "```html\n<div>&amp;</div>\n```"
         assertEquals(fence, prepareMarkdown(fence))
+    }
+
+    @Test
+    fun `indented code keeps its HTML and entities, an indented line after prose doesn't`() {
+        val code = "Example:\n\n    <div class=\"x\">a &amp; b</div>\n\n    <br>\n\nAfter <b>that</b>"
+        assertEquals(
+            "Example:\n\n    <div class=\"x\">a &amp; b</div>\n\n    <br>\n\nAfter that",
+            prepareMarkdown(code),
+        )
+        assertEquals("Prose\n    continued", prepareMarkdown("Prose\n    <b>continued</b>"))
+        // In a list item, code is indented four past the item's text.
+        assertEquals("1. Item\n\n       <b>code</b>", prepareMarkdown("1. Item\n\n       <b>code</b>"))
+        assertEquals("1. Item\n\n   text", prepareMarkdown("1. Item\n\n   <b>text</b>"))
     }
 
     @Test

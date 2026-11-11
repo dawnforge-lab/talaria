@@ -42,30 +42,19 @@ private enum class LineKind { Columns, Rule, Other }
 private fun lineKinds(lines: List<String>): List<LineKind> {
     val kinds = MutableList(lines.size) { LineKind.Other }
     val table = tableLines(lines)
+    val indents = codeIndents(lines)
     var fence: CodeFence? = null
     var math = false
-    // Inside a list item its text is indented as far as the item's text starts, and code 4 more.
-    var codeIndent = INDENTED_CODE
     lines.forEachIndexed { index, line ->
         val trimmed = line.trim()
         val open = fence
         val opening = if (open == null) CodeFence.openedBy(line) else null
-        val item = LIST_ITEM.find(line)
         when {
             open != null -> if (open.closedBy(line)) fence = null
-
             opening != null -> fence = opening
-
             trimmed == "$$" -> math = !math
-
             math || table[index] -> Unit
-
-            item != null -> codeIndent = item.value.length + INDENTED_CODE
-
-            else -> {
-                if (trimmed.isNotEmpty() && !line.startsWith(' ')) codeIndent = INDENTED_CODE
-                kinds[index] = kindOf(line, codeIndent)
-            }
+            else -> kinds[index] = kindOf(line, indents[index])
         }
     }
     return kinds
@@ -92,17 +81,11 @@ private fun isAlignedBlock(run: List<String>, kinds: List<LineKind>): Boolean {
     return shared.isNotEmpty()
 }
 
-/** A list item's marker and the spaces after it, up to where its text starts. */
-private val LIST_ITEM = Regex("""^ *(?:[-*+]|\d{1,9}[.)]) +(?=\S)""")
-
-/** How far a line is indented to be code, outside a list. */
-private const val INDENTED_CODE = 4
-
 /** Two or more spaces, or a tab, between two words; not after the end of a sentence. */
 private val GAP = Regex("""(?<=[^\s.!?])(?: {2,}|\t+)(?=\S)""")
 
-/** A bar of three or more block characters after something else on the line. */
-private val BAR = Regex("""\S.*?[#█▉▊▋▌▍▎▏▓▒░■▇▆▅▄▃▂▁]{3,}""")
+/** A bar after something else on the line: three or more block characters, or `|###`. */
+private val BAR = Regex("""\S.*?(?:[█▉▊▋▌▍▎▏▓▒░■▇▆▅▄▃▂▁]{3,}|\|\s*#{3,})""")
 
 /** A line of rule characters with a gap in it, as under a plain-text table's header. */
 private val RULE = Regex("""[-=_+|: ]*[-=_][-=_+|: ]* {2,}[-=_+|: ]*""")

@@ -61,6 +61,7 @@ class AlignedTextTest {
             "1. one    two    three\n2. four    five    six",
             "> a    b    c\n> d    e    f",
             "## Totals    by    month",
+            "Step 1: ###\nStep 2: ###",
             "only    one    line",
             "Hard line break  \nnext line",
         ).forEach { text -> assertEquals(text, fenceAlignedText(text)) }

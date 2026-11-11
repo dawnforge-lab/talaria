@@ -20,6 +20,7 @@ private fun cleanHtml(markdown: String): String {
     }
     val lines = markdown.lines()
     val table = tableLines(lines)
+    val code = indentedCodeLines(lines)
     val out = mutableListOf<String>()
     var fence: CodeFence? = null
     var index = 0
@@ -38,6 +39,8 @@ private fun cleanHtml(markdown: String): String {
             }
             fence = opening
             out += line
+        } else if (code[index]) {
+            out += line
         } else {
             out += cleanLine(line, tableRow = table[index])
         }
@@ -47,8 +50,10 @@ private fun cleanHtml(markdown: String): String {
 }
 
 /** [line] with its HTML and entities dealt with, inline code left as it is. */
-private fun cleanLine(line: String, tableRow: Boolean): String {
-    if (!line.contains('<') && !line.contains('&')) return line
+private fun cleanLine(source: String, tableRow: Boolean): String {
+    if (!source.contains('<') && !source.contains('&')) return source
+    // A `<br>` at either end of a line is the line's own break already.
+    val line = if (tableRow) source else source.replace(EDGE_BREAK, "")
     val out = StringBuilder()
     var start = 0
     INLINE_CODE.findAll(line).forEach { code ->
@@ -91,6 +96,7 @@ private fun decodeEntities(text: String): String {
 }
 
 private val INLINE_CODE = Regex("`[^`\n]+`")
+private val EDGE_BREAK = Regex("""^\s*<br\s*/?>|<br\s*/?>\s*$""", RegexOption.IGNORE_CASE)
 private val ENTITY = Regex("&(?:amp|nbsp|quot|apos|lt|gt|#39);", RegexOption.IGNORE_CASE)
 
 /** An opening or closing tag: a name, then attributes or nothing. */
