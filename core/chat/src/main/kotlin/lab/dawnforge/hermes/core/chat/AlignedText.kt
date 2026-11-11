@@ -10,7 +10,8 @@ package lab.dawnforge.hermes.core.chat
  * of which two or more draw a bar (`|####`, `████`, at the start of the line or after something).
  * A rule line (`-----  -----`) between them belongs to the block. A gap after a full stop is a
  * sentence break, not a column. Code, display math, lists, quotes, headings and Markdown tables are
- * left alone. Each line is measured once, so a long run of lines that never line up stays cheap.
+ * left alone. Each line is measured once and each run judged in one pass, so a long run of lines
+ * that never line up stays cheap.
  */
 fun fenceAlignedText(markdown: String): String {
     if (!markdown.contains("  ") && !markdown.contains('\t') && !BAR.containsMatchIn(markdown)) return markdown
@@ -18,15 +19,20 @@ fun fenceAlignedText(markdown: String): String {
     val shapes = lineShapes(lines)
     val out = mutableListOf<String>()
     var index = 0
+    var start = 0
     var end = 0
+    var aligned = BooleanArray(0)
     while (index < lines.size) {
-        // The run of lines that can be columns, from here on (the same run for every line in it).
+        // The run of lines that can be columns, from here on, and for each of its lines whether the
+        // rest of the run from there is a block (the same run for every line in it).
         if (end <= index) {
+            start = index
             end = index
             while (end < lines.size && shapes[end].kind != LineKind.Other) end++
+            aligned = alignedFrom(shapes.subList(start, end))
         }
         val block = lines.subList(index, end)
-        if (end > index && isAlignedBlock(shapes.subList(index, end))) {
+        if (end > index && aligned[index - start]) {
             // At the block's own indent, so a chart under a list item stays in that item.
             val indent = " ".repeat(block.minOf { line -> line.length - line.trimStart(' ').length })
             out += "$indent```text"
@@ -83,12 +89,28 @@ private fun shapeOf(line: String, codeIndent: Int): LineShape {
     return if (gapEnds.isNotEmpty() || bar) LineShape(LineKind.Columns, gapEnds, bar) else OTHER
 }
 
-private fun isAlignedBlock(run: List<LineShape>): Boolean {
-    val columns = run.filter { it.kind == LineKind.Columns }
-    if (columns.size < 2) return false
-    if (columns.count { it.bar } >= 2) return true
-    if (columns.all { it.gapEnds.size >= 2 }) return true
-    return columns.map { it.gapEnds }.reduce { common, ends -> common intersect ends }.isNotEmpty()
+/**
+ * For each line of [run], whether the lines from it to the run's end make a block: two or more
+ * column lines that have two or more bars, or each two gaps, or a gap ending in a column they all
+ * share. Worked out from the end once, so a long run that never lines up costs one pass.
+ */
+private fun alignedFrom(run: List<LineShape>): BooleanArray {
+    val aligned = BooleanArray(run.size)
+    var columns = 0
+    var bars = 0
+    var allTwoGaps = true
+    var shared: Set<Int>? = null
+    for (index in run.indices.reversed()) {
+        val shape = run[index]
+        if (shape.kind == LineKind.Columns) {
+            columns++
+            if (shape.bar) bars++
+            allTwoGaps = allTwoGaps && shape.gapEnds.size >= 2
+            shared = shared?.let { it intersect shape.gapEnds } ?: shape.gapEnds
+        }
+        aligned[index] = columns >= 2 && (bars >= 2 || allTwoGaps || !shared.isNullOrEmpty())
+    }
+    return aligned
 }
 
 /** Two or more spaces, or a tab, between two words; not after the end of a sentence. */

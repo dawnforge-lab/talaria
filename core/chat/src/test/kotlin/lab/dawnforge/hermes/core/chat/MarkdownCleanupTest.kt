@@ -45,6 +45,14 @@ class MarkdownCleanupTest {
         // In lower case too, and words after an element's name that aren't attributes.
         assertEquals("Box\\<s> and Foo\\<a>", prepareMarkdown("Box<s> and Foo<a>"))
         assertEquals("if a \\<b and c> d", prepareMarkdown("if a <b and c> d"))
+        // A closing tag shown in code closes nothing, so it doesn't make a look-alike HTML.
+        assertEquals("Box\\<b> here, and `</b>` in code", prepareMarkdown("Box<b> here, and `</b>` in code"))
+        assertEquals("```\n</b>\n```\nFoo\\<b>", prepareMarkdown("```\n</b>\n```\nFoo<b>"))
+        // Attributes that stand alone are attributes.
+        assertEquals(
+            "\nShown\nInside\n",
+            prepareMarkdown("<details open>\n<summary>Shown</summary>\nInside\n</details>"),
+        )
         // Real HTML still goes: closed later, empty, with attributes, or a closing tag.
         assertEquals("x  y z", prepareMarkdown("<i>x</i> <hr> <span id=\"n\">y</span> z</div>"))
         assertEquals("Already \\<escaped>", prepareMarkdown("Already \\<escaped>"))
