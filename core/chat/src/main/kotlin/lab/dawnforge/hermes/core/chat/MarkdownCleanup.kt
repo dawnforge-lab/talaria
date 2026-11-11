@@ -4,9 +4,11 @@ package lab.dawnforge.hermes.core.chat
  * A settled reply's Markdown, made ready for the chat's renderer, which draws no HTML and drops
  * what it reads as HTML. Outside code:
  * - `<br>` starts a new line (a space in a table row, where a line break would end the row);
- * - other HTML tags, in lower case as models write them, are taken out and their text kept, so a
- *   `<details>` block doesn't hide its text;
- * - what only looks like a tag (`Vec<u8>`, `List<String>`, `Box<S>`, `<your-key>`) stays as written;
+ * - other HTML tags are taken out and their text kept, so a `<details>` block doesn't hide its
+ *   text. A tag is HTML when it is written in lower case with an element's name, and is a closing
+ *   tag, an empty element (`<hr>`), has attributes (`<div class="x">`) or is closed later on;
+ * - what only looks like a tag stays as written: `Vec<u8>`, `List<String>`, `<your-key>`, and
+ *   `Box<S>`, `Box<s>` or `a <b and c> d`, which share a name with an element but are none of those;
  * - the common entities (`&amp;`, `&nbsp;`, …) become their characters.
  * Empty code blocks are dropped, and text laid out in columns goes into a code block
  * ([fenceAlignedText]). Hermes Desktop does the same before its renderer (`markdown-preprocess.ts`).
@@ -20,6 +22,7 @@ private fun cleanHtml(markdown: String): String {
         return markdown
     }
     val lines = markdown.lines()
+    val closed = CLOSING_TAG.findAll(markdown).map { it.groupValues[1] }.toSet()
     val table = tableLines(lines)
     val code = indentedCodeLines(lines)
     val out = mutableListOf<String>()
@@ -43,7 +46,7 @@ private fun cleanHtml(markdown: String): String {
         } else if (code[index]) {
             out += line
         } else {
-            out += cleanLine(line, tableRow = table[index])
+            out += cleanLine(line, tableRow = table[index], closed = closed)
         }
         index++
     }
@@ -51,20 +54,21 @@ private fun cleanHtml(markdown: String): String {
 }
 
 /** [line] with its HTML and entities dealt with, inline code left as it is. */
-private fun cleanLine(source: String, tableRow: Boolean): String {
+private fun cleanLine(source: String, tableRow: Boolean, closed: Set<String>): String {
     if (!source.contains('<') && !source.contains('&')) return source
     // A `<br>` at either end of a line is the line's own break already.
     val line = if (tableRow) source else source.replace(EDGE_BREAK, "")
     val out = StringBuilder()
     var start = 0
     INLINE_CODE.findAll(line).forEach { code ->
-        out.append(cleanProse(line.substring(start, code.range.first), tableRow)).append(code.value)
+        out.append(cleanProse(line.substring(start, code.range.first), tableRow, closed)).append(code.value)
         start = code.range.last + 1
     }
-    return out.append(cleanProse(line.substring(start), tableRow)).toString()
+    return out.append(cleanProse(line.substring(start), tableRow, closed)).toString()
 }
 
-private fun cleanProse(text: String, tableRow: Boolean): String {
+/** [text] with its entities decoded and its tags dealt with; [closed] names the reply's closing tags. */
+private fun cleanProse(text: String, tableRow: Boolean, closed: Set<String>): String {
     val decoded = decodeEntities(text)
     return TAG.replace(decoded) { tag ->
         val written = tag.groupValues[1]
@@ -75,12 +79,20 @@ private fun cleanProse(text: String, tableRow: Boolean): String {
 
             name == "br" -> if (tableRow) " " else "\n"
 
-            // `Box<S>` and `List<A>` are type parameters, not the `<s>` and `<a>` elements.
-            written == name && name in HTML_ELEMENTS -> ""
+            isHtml(tag.value, written, tag.groupValues[2], closed) -> ""
 
             else -> "\\" + tag.value
         }
     }
+}
+
+/** Whether a tag [written] so, with [attributes], is HTML rather than text that looks like it. */
+private fun isHtml(tag: String, written: String, attributes: String, closed: Set<String>): Boolean {
+    if (written != written.lowercase() || written !in HTML_ELEMENTS) return false
+    val attributesSet = '=' in attributes
+    // `a <b and c> d`: words after the name, but no attribute.
+    if (attributes.trim().trimEnd('/').isNotEmpty() && !attributesSet) return false
+    return tag.startsWith("</") || written in EMPTY_ELEMENTS || attributesSet || written in closed
 }
 
 private fun decodeEntities(text: String): String {
@@ -103,7 +115,11 @@ private val EDGE_BREAK = Regex("""^\s*<br\s*/?>|<br\s*/?>\s*$""", RegexOption.IG
 private val ENTITY = Regex("&(?:amp|nbsp|quot|apos|lt|gt|#39);", RegexOption.IGNORE_CASE)
 
 /** An opening or closing tag: a name, then attributes or nothing. */
-private val TAG = Regex("""</?([A-Za-z][A-Za-z0-9-]*)(?:\s[^<>]*)?/?>""")
+private val TAG = Regex("""</?([A-Za-z][A-Za-z0-9-]*)(\s[^<>]*)?/?>""")
+private val CLOSING_TAG = Regex("""</([a-z][a-z0-9-]*)\s*>""")
+
+/** Elements that have no closing tag. */
+private val EMPTY_ELEMENTS = setOf("br", "col", "embed", "hr", "img", "input", "link", "meta", "source", "wbr")
 
 /** HTML's element names, so that a tag with any other name is text that only looks like one. */
 private val HTML_ELEMENTS = setOf(

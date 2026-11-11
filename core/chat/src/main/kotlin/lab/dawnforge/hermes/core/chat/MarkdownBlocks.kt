@@ -2,7 +2,8 @@ package lab.dawnforge.hermes.core.chat
 
 /**
  * Which of [lines] belong to a Markdown table: a row with a `|`, the separator row under it
- * (`|---|:-:|`, or `---|---` without the outer pipes), and the rows after it up to a blank line.
+ * (`|---|:-:|`, `---|---` without the outer pipes, or `|---|` for one column), and the rows after
+ * it up to a blank line.
  * Tables in fenced code don't count.
  */
 internal fun tableLines(lines: List<String>): BooleanArray {
@@ -79,5 +80,7 @@ private val LIST_ITEM = Regex("""^ *(?:[-*+]|\d{1,9}[.)]) +(?=\S)""")
 /** How far a line is indented to be code, outside a list. */
 private const val INDENTED_CODE = 4
 
-/** A Markdown table's separator row. */
-private val TABLE_SEPARATOR = Regex("""\|?\s*:?-+:?\s*(?:\|\s*:?-+:?\s*)+\|?""")
+/** A Markdown table's separator row: two or more cells, or one with a pipe beside it. */
+private val TABLE_SEPARATOR = Regex(
+    """\|?\s*:?-+:?\s*(?:\|\s*:?-+:?\s*)+\|?|\|\s*:?-+:?\s*\|?|\s*:?-+:?\s*\|""",
+)

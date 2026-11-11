@@ -37,9 +37,9 @@ import org.intellij.markdown.flavours.gfm.GFMTokenTypes.TABLE_SEPARATOR
 
 /**
  * A Markdown table that reads on a phone. Cells wrap instead of ending in "…", and each column is
- * as wide as its content up to [MAX_COLUMN]. A table wider than the chat narrows its columns towards
- * their longest word, and past that scrolls sideways. The renderer's own table gives every column
- * 160dp and cuts each cell to one line.
+ * as wide as its content up to [MAX_COLUMN], or as its longest word if that is wider. A table wider
+ * than the chat narrows its columns towards their longest word, and past that scrolls sideways. The
+ * renderer's own table gives every column 160dp and cuts each cell to one line.
  */
 @Composable
 internal fun ChatTable(content: String, node: ASTNode, style: TextStyle) {
@@ -130,13 +130,15 @@ private fun TableLayout(available: Int, columns: Int, modifier: Modifier, conten
 }
 
 /**
- * Each column at its content's width, capped at [maxColumn]. When they don't fit in [available],
+ * Each column at its content's width, capped at [maxColumn] but never below its longest word
+ * ([narrowest]). When they don't fit in [available],
  * the columns with the most room to wrap give it up first, down to their [narrowest] (the longest
  * word); a table still too wide keeps those widths and scrolls.
  */
 internal fun columnWidths(natural: IntArray, narrowest: IntArray, available: Int, maxColumn: Int): IntArray {
-    val wanted = IntArray(natural.size) { minOf(natural[it], maxColumn) }
-    val floor = IntArray(natural.size) { minOf(narrowest[it], wanted[it]) }
+    // A word longer than the cap widens its column, so the table scrolls rather than splitting it.
+    val floor = IntArray(natural.size) { minOf(narrowest[it], natural[it]) }
+    val wanted = IntArray(natural.size) { maxOf(minOf(natural[it], maxColumn), floor[it]) }
     val excess = wanted.sum() - available
     if (excess <= 0) return wanted
     val slack = IntArray(natural.size) { wanted[it] - floor[it] }

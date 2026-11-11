@@ -48,6 +48,17 @@ class ChatTableTest {
     }
 
     @Test
+    fun `a word longer than the cap widens its column`() {
+        val widths = columnWidths(
+            natural = intArrayOf(80, 900),
+            narrowest = intArrayOf(40, 300),
+            available = 1000,
+            maxColumn = 240,
+        )
+        assertContentEquals(intArrayOf(80, 300), widths)
+    }
+
+    @Test
     fun `past the longest words the table keeps them and scrolls`() {
         val widths = columnWidths(
             natural = intArrayOf(400, 400),
