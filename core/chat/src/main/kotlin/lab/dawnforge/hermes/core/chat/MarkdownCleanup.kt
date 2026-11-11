@@ -4,8 +4,9 @@ package lab.dawnforge.hermes.core.chat
  * A settled reply's Markdown, made ready for the chat's renderer, which draws no HTML and drops
  * what it reads as HTML. Outside code:
  * - `<br>` starts a new line (a space in a table row, where a line break would end the row);
- * - other HTML tags are taken out and their text kept, so a `<details>` block doesn't hide its text;
- * - what only looks like a tag (`Vec<u8>`, `List<String>`, `<your-key>`) stays as written;
+ * - other HTML tags, in lower case as models write them, are taken out and their text kept, so a
+ *   `<details>` block doesn't hide its text;
+ * - what only looks like a tag (`Vec<u8>`, `List<String>`, `Box<S>`, `<your-key>`) stays as written;
  * - the common entities (`&amp;`, `&nbsp;`, …) become their characters.
  * Empty code blocks are dropped, and text laid out in columns goes into a code block
  * ([fenceAlignedText]). Hermes Desktop does the same before its renderer (`markdown-preprocess.ts`).
@@ -66,14 +67,16 @@ private fun cleanLine(source: String, tableRow: Boolean): String {
 private fun cleanProse(text: String, tableRow: Boolean): String {
     val decoded = decodeEntities(text)
     return TAG.replace(decoded) { tag ->
-        val name = tag.groupValues[1].lowercase()
+        val written = tag.groupValues[1]
+        val name = written.lowercase()
         when {
             // Escaped already, by the model or from `&lt;`.
             decoded.getOrNull(tag.range.first - 1) == '\\' -> tag.value
 
             name == "br" -> if (tableRow) " " else "\n"
 
-            name in HTML_ELEMENTS -> ""
+            // `Box<S>` and `List<A>` are type parameters, not the `<s>` and `<a>` elements.
+            written == name && name in HTML_ELEMENTS -> ""
 
             else -> "\\" + tag.value
         }

@@ -37,6 +37,9 @@ class MarkdownCleanupTest {
     fun `what only looks like a tag stays as written`() {
         assertEquals("Use Vec\\<u8> and List\\<String>.", prepareMarkdown("Use Vec<u8> and List<String>."))
         assertEquals("Set \\<your-key> in .env", prepareMarkdown("Set <your-key> in .env"))
+        // One-letter type parameters that share a name with an element (`<s>`, `<a>`, `<b>`).
+        assertEquals("Box\\<S>, List\\<A>, Foo\\<B>", prepareMarkdown("Box<S>, List<A>, Foo<B>"))
+        assertEquals("one\ntwo", prepareMarkdown("one<BR>two"))
         assertEquals("Already \\<escaped>", prepareMarkdown("Already \\<escaped>"))
         assertEquals(
             "See <https://example.com> or <me@example.com>",
