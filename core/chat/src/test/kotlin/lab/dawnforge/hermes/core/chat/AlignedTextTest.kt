@@ -38,6 +38,14 @@ class AlignedTextTest {
     }
 
     @Test
+    fun `a block can start partway through a run of gapped lines`() {
+        assertEquals(
+            "alpha  one\nbeta    two\n${fenced("x    y    z\nw    v    u")}",
+            fenceAlignedText("alpha  one\nbeta    two\nx    y    z\nw    v    u"),
+        )
+    }
+
+    @Test
     fun `a long run of lines that never line up stays as it is`() {
         val text = (1..400).joinToString("\n") { "word$it" + " ".repeat(2 + it % 7) + "x" }
         assertEquals(text, fenceAlignedText(text))

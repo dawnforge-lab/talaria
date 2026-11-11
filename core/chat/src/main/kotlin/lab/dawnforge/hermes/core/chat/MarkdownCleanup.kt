@@ -6,7 +6,8 @@ package lab.dawnforge.hermes.core.chat
  * - `<br>` starts a new line (a space in a table row, where a line break would end the row);
  * - other HTML tags are taken out and their text kept, so a `<details>` block doesn't hide its
  *   text. A tag is HTML when it is written in lower case with an element's name, and is a closing
- *   tag, an empty element (`<hr>`), has attributes (`<div class="x">`) or is closed later on;
+ *   tag, an empty element (`<hr>`), has attributes (`<div class="x">`, `<details open>`) or is
+ *   closed somewhere in the reply's prose;
  * - what only looks like a tag stays as written: `Vec<u8>`, `List<String>`, `<your-key>`, and
  *   `Box<S>`, `Box<s>` or `a <b and c> d`, which share a name with an element but are none of those;
  * - the common entities (`&amp;`, `&nbsp;`, …) become their characters.
@@ -22,9 +23,9 @@ private fun cleanHtml(markdown: String): String {
         return markdown
     }
     val lines = markdown.lines()
-    val closed = CLOSING_TAG.findAll(markdown).map { it.groupValues[1] }.toSet()
     val table = tableLines(lines)
     val code = indentedCodeLines(lines)
+    val closed = closingTags(lines, code)
     val out = mutableListOf<String>()
     var fence: CodeFence? = null
     var index = 0
@@ -89,10 +90,30 @@ private fun cleanProse(text: String, tableRow: Boolean, closed: Set<String>): St
 /** Whether a tag [written] so, with [attributes], is HTML rather than text that looks like it. */
 private fun isHtml(tag: String, written: String, attributes: String, closed: Set<String>): Boolean {
     if (written != written.lowercase() || written !in HTML_ELEMENTS) return false
-    val attributesSet = '=' in attributes
-    // `a <b and c> d`: words after the name, but no attribute.
-    if (attributes.trim().trimEnd('/').isNotEmpty() && !attributesSet) return false
-    return tag.startsWith("</") || written in EMPTY_ELEMENTS || attributesSet || written in closed
+    // What is left once `name="value"` pairs are taken out must be HTML's attributes that stand alone
+    // (`<details open>`); `a <b and c> d` has words there instead.
+    val bare = ATTRIBUTE_VALUE.replace(attributes, " ").trim().trimEnd('/')
+        .split(SPACES).filter(String::isNotEmpty)
+    if (bare.any { it.lowercase() !in BOOLEAN_ATTRIBUTES }) return false
+    val hasAttributes = '=' in attributes || bare.isNotEmpty()
+    return tag.startsWith("</") || written in EMPTY_ELEMENTS || hasAttributes || written in closed
+}
+
+/** The elements closed in the reply's prose: `</b>` in code shows code, it closes nothing. */
+private fun closingTags(lines: List<String>, code: BooleanArray): Set<String> {
+    val closed = mutableSetOf<String>()
+    var fence: CodeFence? = null
+    lines.forEachIndexed { index, line ->
+        val open = fence
+        val opening = if (open == null) CodeFence.openedBy(line) else null
+        when {
+            open != null -> if (open.closedBy(line)) fence = null
+            opening != null -> fence = opening
+            code[index] -> Unit
+            else -> CLOSING_TAG.findAll(INLINE_CODE.replace(line, "")).forEach { closed += it.groupValues[1] }
+        }
+    }
+    return closed
 }
 
 private fun decodeEntities(text: String): String {
@@ -117,6 +138,17 @@ private val ENTITY = Regex("&(?:amp|nbsp|quot|apos|lt|gt|#39);", RegexOption.IGN
 /** An opening or closing tag: a name, then attributes or nothing. */
 private val TAG = Regex("""</?([A-Za-z][A-Za-z0-9-]*)(\s[^<>]*)?/?>""")
 private val CLOSING_TAG = Regex("""</([a-z][a-z0-9-]*)\s*>""")
+
+/** An attribute with a value: `class="x"`, `width=2`. */
+private val ATTRIBUTE_VALUE = Regex("""[A-Za-z_:][-\w:.]*\s*=\s*(?:"[^"]*"|'[^']*'|[^\s"'=<>`]+)""")
+private val SPACES = Regex("""\s+""")
+
+/** HTML's attributes that stand without a value. */
+private val BOOLEAN_ATTRIBUTES = setOf(
+    "allowfullscreen", "async", "autofocus", "autoplay", "checked", "controls", "default", "defer",
+    "disabled", "download", "hidden", "inert", "ismap", "loop", "multiple", "muted", "nomodule",
+    "novalidate", "open", "playsinline", "readonly", "required", "reversed", "selected",
+)
 
 /** Elements that have no closing tag. */
 private val EMPTY_ELEMENTS = setOf("br", "col", "embed", "hr", "img", "input", "link", "meta", "source", "wbr")

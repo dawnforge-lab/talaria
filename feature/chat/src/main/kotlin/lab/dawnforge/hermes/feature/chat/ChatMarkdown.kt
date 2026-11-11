@@ -52,8 +52,9 @@ import org.intellij.markdown.ast.getTextInNode
  * A reply being written uses the renderer's streaming state, which re-parses only the unfinished
  * tail as text is appended. It is shown as it comes, without [prepareMarkdown]: that pass reads the
  * reply as a whole (a chart is columns only once its lines are there, a tag is HTML only once it
- * is closed), so a reply settles into its final shape when it is done, as Hermes Desktop's does. Hermes sometimes rewrites a reply instead of extending it (the stored
- * copy of a segment replaces the streamed one); the state then starts over.
+ * is closed) and would rewrite text already shown, which this state can't take, so a reply settles
+ * into its final shape when it is done. Hermes sometimes rewrites a reply instead of extending it
+ * (the stored copy of a segment replaces the streamed one); the state then starts over.
  */
 @Composable
 internal fun ChatMarkdown(text: String, streaming: Boolean, modifier: Modifier = Modifier) {
