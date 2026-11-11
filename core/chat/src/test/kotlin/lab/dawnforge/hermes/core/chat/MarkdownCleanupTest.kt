@@ -8,7 +8,14 @@ class MarkdownCleanupTest {
     fun `line breaks in HTML start a new line, or leave a space in a table row`() {
         assertEquals("line one\nline two", prepareMarkdown("line one<br>line two"))
         assertEquals("a\nb\nc", prepareMarkdown("a<br/>b<br />c"))
-        assertEquals("| one two | x |", prepareMarkdown("| one<br>two | x |"))
+        assertEquals(
+            "| a | b |\n|---|---|\n| one two | x |",
+            prepareMarkdown("| a | b |\n|---|---|\n| one<br>two | x |"),
+        )
+        // A table without its outer pipes, and the header row too.
+        assertEquals("a b | c\n---|---\nd e | f", prepareMarkdown("a<br>b | c\n---|---\nd<br>e | f"))
+        // A line with a pipe that isn't in a table is prose.
+        assertEquals("x | y\nz", prepareMarkdown("x | y<br>z"))
     }
 
     @Test

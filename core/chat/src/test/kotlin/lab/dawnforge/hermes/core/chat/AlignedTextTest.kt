@@ -37,6 +37,14 @@ class AlignedTextTest {
     }
 
     @Test
+    fun `a block under a list item keeps the item's indent, so it stays in the item`() {
+        assertEquals(
+            "1. Training:\n   ```text\n   week    runs\n   1       4\n   ```\n2. Rest",
+            fenceAlignedText("1. Training:\n   week    runs\n   1       4\n2. Rest"),
+        )
+    }
+
+    @Test
     fun `prose, lists, quotes, headings and single lines stay as they are`() {
         listOf(
             "One sentence.  Another one.\nA third.  And a fourth.",

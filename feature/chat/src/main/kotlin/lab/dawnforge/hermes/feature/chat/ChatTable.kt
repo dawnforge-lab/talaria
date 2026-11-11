@@ -143,11 +143,13 @@ internal fun columnWidths(natural: IntArray, narrowest: IntArray, available: Int
     val totalSlack = slack.sum()
     if (totalSlack <= excess) return floor
     val widths = IntArray(natural.size) { wanted[it] - (excess.toLong() * slack[it] / totalSlack).toInt() }
-    // What integer division left over comes off the column with the most room left.
-    val over = widths.sum() - available
-    if (over > 0) {
-        val widest = widths.indices.maxBy { widths[it] - floor[it] }
-        widths[widest] -= over
+    // What integer division left over comes off the columns with room left, never below their floor.
+    var over = widths.sum() - available
+    for (column in widths.indices.sortedByDescending { widths[it] - floor[it] }) {
+        if (over <= 0) break
+        val take = minOf(over, widths[column] - floor[column])
+        widths[column] -= take
+        over -= take
     }
     return widths
 }
@@ -165,16 +167,16 @@ private fun Modifier.cellLines(color: Color, bottom: Boolean, end: Boolean): Mod
     }
 }
 
-private enum class CellAlign(val box: Alignment, val text: TextAlign) {
+internal enum class CellAlign(val box: Alignment, val text: TextAlign) {
     Start(Alignment.TopStart, TextAlign.Start),
     Center(Alignment.TopCenter, TextAlign.Center),
     End(Alignment.TopEnd, TextAlign.End),
 }
 
 /** A table's rows (the header first), each with one cell per column, empty where a row is short. */
-private class Table(val columns: Int, val rows: List<List<ASTNode?>>, val alignments: List<CellAlign>)
+internal class Table(val columns: Int, val rows: List<List<ASTNode?>>, val alignments: List<CellAlign>)
 
-private fun tableOf(content: String, node: ASTNode): Table {
+internal fun tableOf(content: String, node: ASTNode): Table {
     val header = node.children.firstOrNull { it.type == HEADER } ?: return Table(0, emptyList(), emptyList())
     val columns = header.children.count { it.type == CELL }
     val rows = (listOf(header) + node.children.filter { it.type == ROW }).map { row ->

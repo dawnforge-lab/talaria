@@ -20,10 +20,13 @@ fun fenceAlignedText(markdown: String): String {
     while (index < lines.size) {
         var end = index
         while (end < lines.size && kinds[end] != LineKind.Other) end++
-        if (end > index && isAlignedBlock(lines.subList(index, end), kinds.subList(index, end))) {
-            out += "```text"
-            lines.subList(index, end).forEach { out += it.trimEnd() }
-            out += "```"
+        val block = lines.subList(index, end)
+        if (end > index && isAlignedBlock(block, kinds.subList(index, end))) {
+            // At the block's own indent, so a chart under a list item stays in that item.
+            val indent = " ".repeat(block.minOf { line -> line.length - line.trimStart(' ').length })
+            out += "$indent```text"
+            block.forEach { out += it.trimEnd() }
+            out += "$indent```"
             index = end
         } else {
             out += lines[index]
@@ -38,28 +41,17 @@ private enum class LineKind { Columns, Rule, Other }
 /** What each line can be part of: code, display math and Markdown tables are never columns. */
 private fun lineKinds(lines: List<String>): List<LineKind> {
     val kinds = MutableList(lines.size) { LineKind.Other }
+    val table = tableLines(lines)
     var fence: String? = null
     var math = false
-    var table = false
     lines.forEachIndexed { index, line ->
         val trimmed = line.trim()
         val open = fence
         when {
             open != null -> if (trimmed.startsWith(open)) fence = null
-
             FENCE.containsMatchIn(trimmed) -> fence = trimmed.take(3)
-
             trimmed == "$$" -> math = !math
-
-            math -> Unit
-
-            table -> table = trimmed.isNotEmpty()
-
-            TABLE_SEPARATOR.matches(trimmed) && index > 0 && lines[index - 1].contains('|') -> {
-                table = true
-                kinds[index - 1] = LineKind.Other
-            }
-
+            math || table[index] -> Unit
             else -> kinds[index] = kindOf(line)
         }
     }
@@ -98,6 +90,3 @@ private val RULE = Regex("""[-=_+|: ]*[-=_][-=_+|: ]* {2,}[-=_+|: ]*""")
 
 /** Lists, quotes, headings and table rows. */
 private val NOT_COLUMNS = Regex("""^(?:[-*+]\s|\d+[.)]\s|>|#{1,6}(?:\s|$)|\|)""")
-
-/** A Markdown table's separator row. */
-private val TABLE_SEPARATOR = Regex("""\|?\s*:?-+:?\s*(?:\|\s*:?-+:?\s*)+\|?""")

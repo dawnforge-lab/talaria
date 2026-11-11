@@ -19,6 +19,7 @@ private fun cleanHtml(markdown: String): String {
         return markdown
     }
     val lines = markdown.lines()
+    val table = tableLines(lines)
     val out = mutableListOf<String>()
     var fence: String? = null
     var index = 0
@@ -39,7 +40,7 @@ private fun cleanHtml(markdown: String): String {
             fence = marker
             out += line
         } else {
-            out += cleanLine(line, tableRow = trimmed.startsWith("|"))
+            out += cleanLine(line, tableRow = table[index])
         }
         index++
     }

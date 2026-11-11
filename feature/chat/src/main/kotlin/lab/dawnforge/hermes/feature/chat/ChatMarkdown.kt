@@ -129,7 +129,7 @@ internal fun ChatMarkdown(text: String, streaming: Boolean, modifier: Modifier =
  * (the renderer drops it, so `List<String>` showed as "List"), and the indent of a line after a line
  * break is not shown, as Hermes Desktop trims it.
  */
-private fun AnnotatedString.Builder.annotateChat(content: String, child: ASTNode): Boolean {
+internal fun AnnotatedString.Builder.annotateChat(content: String, child: ASTNode): Boolean {
     val parent = child.parent ?: return false
     return when {
         child.type == MarkdownTokenTypes.HTML_TAG && parent.type == MarkdownElementTypes.CODE_SPAN -> {
