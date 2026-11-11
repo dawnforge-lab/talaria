@@ -14,6 +14,8 @@ class MarkdownCleanupTest {
         )
         // A table without its outer pipes, and the header row too.
         assertEquals("a b | c\n---|---\nd e | f", prepareMarkdown("a<br>b | c\n---|---\nd<br>e | f"))
+        // A table of one column.
+        assertEquals("| a |\n|---|\n| one two |", prepareMarkdown("| a |\n|---|\n| one<br>two |"))
         // A line with a pipe that isn't in a table is prose.
         assertEquals("x | y\nz", prepareMarkdown("x | y<br>z"))
         // At either end of a line it is that line's own break, not a blank line.
@@ -40,6 +42,11 @@ class MarkdownCleanupTest {
         // One-letter type parameters that share a name with an element (`<s>`, `<a>`, `<b>`).
         assertEquals("Box\\<S>, List\\<A>, Foo\\<B>", prepareMarkdown("Box<S>, List<A>, Foo<B>"))
         assertEquals("one\ntwo", prepareMarkdown("one<BR>two"))
+        // In lower case too, and words after an element's name that aren't attributes.
+        assertEquals("Box\\<s> and Foo\\<a>", prepareMarkdown("Box<s> and Foo<a>"))
+        assertEquals("if a \\<b and c> d", prepareMarkdown("if a <b and c> d"))
+        // Real HTML still goes: closed later, empty, with attributes, or a closing tag.
+        assertEquals("x  y z", prepareMarkdown("<i>x</i> <hr> <span id=\"n\">y</span> z</div>"))
         assertEquals("Already \\<escaped>", prepareMarkdown("Already \\<escaped>"))
         assertEquals(
             "See <https://example.com> or <me@example.com>",

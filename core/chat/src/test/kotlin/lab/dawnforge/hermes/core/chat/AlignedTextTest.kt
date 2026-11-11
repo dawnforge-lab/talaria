@@ -26,6 +26,21 @@ class AlignedTextTest {
         assertEquals(fenced(twoColumns), fenceAlignedText(twoColumns))
         val bars = "Mon ███\nTue ██████"
         assertEquals(fenced(bars), fenceAlignedText(bars))
+        // Bars at the start of the line count too.
+        val leftBars = "███ Mon\n██████ Tue"
+        assertEquals(fenced(leftBars), fenceAlignedText(leftBars))
+    }
+
+    @Test
+    fun `one line with a bar doesn't make its neighbours a chart`() {
+        val text = "The build is ███ done\nand the  rest is prose."
+        assertEquals(text, fenceAlignedText(text))
+    }
+
+    @Test
+    fun `a long run of lines that never line up stays as it is`() {
+        val text = (1..400).joinToString("\n") { "word$it" + " ".repeat(2 + it % 7) + "x" }
+        assertEquals(text, fenceAlignedText(text))
     }
 
     @Test
