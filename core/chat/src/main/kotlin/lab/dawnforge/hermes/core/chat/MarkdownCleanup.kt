@@ -21,23 +21,22 @@ private fun cleanHtml(markdown: String): String {
     val lines = markdown.lines()
     val table = tableLines(lines)
     val out = mutableListOf<String>()
-    var fence: String? = null
+    var fence: CodeFence? = null
     var index = 0
     while (index < lines.size) {
         val line = lines[index]
-        val trimmed = line.trim()
         val open = fence
+        val opening = if (open == null) CodeFence.openedBy(line) else null
         if (open != null) {
-            if (trimmed.startsWith(open)) fence = null
+            if (open.closedBy(line)) fence = null
             out += line
-        } else if (FENCE.containsMatchIn(trimmed)) {
-            val marker = trimmed.take(3)
-            val close = (index + 1 until lines.size).firstOrNull { lines[it].trim().startsWith(marker) }
+        } else if (opening != null) {
+            val close = (index + 1 until lines.size).firstOrNull { opening.closedBy(lines[it]) }
             if (close != null && (index + 1 until close).all { lines[it].isBlank() }) {
                 index = close + 1
                 continue
             }
-            fence = marker
+            fence = opening
             out += line
         } else {
             out += cleanLine(line, tableRow = table[index])
@@ -91,7 +90,6 @@ private fun decodeEntities(text: String): String {
     }
 }
 
-private val FENCE = Regex("^(```|~~~)")
 private val INLINE_CODE = Regex("`[^`\n]+`")
 private val ENTITY = Regex("&(?:amp|nbsp|quot|apos|lt|gt|#39);", RegexOption.IGNORE_CASE)
 

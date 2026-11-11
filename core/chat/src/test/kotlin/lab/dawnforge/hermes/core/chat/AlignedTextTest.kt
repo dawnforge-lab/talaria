@@ -42,6 +42,14 @@ class AlignedTextTest {
             "1. Training:\n   ```text\n   week    runs\n   1       4\n   ```\n2. Rest",
             fenceAlignedText("1. Training:\n   week    runs\n   1       4\n2. Rest"),
         )
+        // An item whose text starts four columns in, as after `10.` or in a nested list.
+        assertEquals(
+            "10. Training:\n    ```text\n    week    runs\n    1       4\n    ```",
+            fenceAlignedText("10. Training:\n    week    runs\n    1       4"),
+        )
+        // Indented four more than the item's text, it is code.
+        val code = "1. Example:\n\n       a    b    c\n       d    e    f"
+        assertEquals(code, fenceAlignedText(code))
     }
 
     @Test
@@ -62,6 +70,8 @@ class AlignedTextTest {
     fun `code, math and Markdown tables are left alone`() {
         listOf(
             "```\na    b    c\nd    e    f\n```",
+            // A longer fence holding a shorter one: all of it is code.
+            "````markdown\n```text\na    b    c\nd    e    f\n```\n````",
             "~~~\na    b    c\nd    e    f\n~~~",
             "$$\na    &    b \\\\\nc    &    d\n$$",
             "| a    | b    |\n|------|------|\n| 1    | 2    |",

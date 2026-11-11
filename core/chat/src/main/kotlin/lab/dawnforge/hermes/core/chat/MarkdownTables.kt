@@ -7,16 +7,17 @@ package lab.dawnforge.hermes.core.chat
  */
 internal fun tableLines(lines: List<String>): BooleanArray {
     val table = BooleanArray(lines.size)
-    var fence: String? = null
+    var fence: CodeFence? = null
     var inTable = false
     lines.forEachIndexed { index, line ->
         val trimmed = line.trim()
         val open = fence
+        val opening = if (open == null) CodeFence.openedBy(line) else null
         when {
-            open != null -> if (trimmed.startsWith(open)) fence = null
+            open != null -> if (open.closedBy(line)) fence = null
 
-            FENCE.containsMatchIn(trimmed) -> {
-                fence = trimmed.take(3)
+            opening != null -> {
+                fence = opening
                 inTable = false
             }
 
@@ -33,8 +34,6 @@ internal fun tableLines(lines: List<String>): BooleanArray {
     }
     return table
 }
-
-private val FENCE = Regex("^(```|~~~)")
 
 /** A Markdown table's separator row. */
 private val TABLE_SEPARATOR = Regex("""\|?\s*:?-+:?\s*(?:\|\s*:?-+:?\s*)+\|?""")

@@ -42,25 +42,40 @@ private enum class LineKind { Columns, Rule, Other }
 private fun lineKinds(lines: List<String>): List<LineKind> {
     val kinds = MutableList(lines.size) { LineKind.Other }
     val table = tableLines(lines)
-    var fence: String? = null
+    var fence: CodeFence? = null
     var math = false
+    // Inside a list item its text is indented as far as the item's text starts, and code 4 more.
+    var codeIndent = INDENTED_CODE
     lines.forEachIndexed { index, line ->
         val trimmed = line.trim()
         val open = fence
+        val opening = if (open == null) CodeFence.openedBy(line) else null
+        val item = LIST_ITEM.find(line)
         when {
-            open != null -> if (trimmed.startsWith(open)) fence = null
-            FENCE.containsMatchIn(trimmed) -> fence = trimmed.take(3)
+            open != null -> if (open.closedBy(line)) fence = null
+
+            opening != null -> fence = opening
+
             trimmed == "$$" -> math = !math
+
             math || table[index] -> Unit
-            else -> kinds[index] = kindOf(line)
+
+            item != null -> codeIndent = item.value.length + INDENTED_CODE
+
+            else -> {
+                if (trimmed.isNotEmpty() && !line.startsWith(' ')) codeIndent = INDENTED_CODE
+                kinds[index] = kindOf(line, codeIndent)
+            }
         }
     }
     return kinds
 }
 
-private fun kindOf(line: String): LineKind {
+/** [line]'s kind; indented [codeIndent] spaces or more, or by a tab, it is code. */
+private fun kindOf(line: String, codeIndent: Int): LineKind {
     val text = line.trimEnd()
-    if (text.isBlank() || text.startsWith("    ") || text.startsWith('\t')) return LineKind.Other
+    val indent = text.length - text.trimStart(' ').length
+    if (text.isBlank() || indent >= codeIndent || text.startsWith('\t')) return LineKind.Other
     val trimmed = text.trimStart()
     if (NOT_COLUMNS.containsMatchIn(trimmed)) return LineKind.Other
     if (RULE.matches(trimmed)) return LineKind.Rule
@@ -77,7 +92,11 @@ private fun isAlignedBlock(run: List<String>, kinds: List<LineKind>): Boolean {
     return shared.isNotEmpty()
 }
 
-private val FENCE = Regex("^(```|~~~)")
+/** A list item's marker and the spaces after it, up to where its text starts. */
+private val LIST_ITEM = Regex("""^ *(?:[-*+]|\d{1,9}[.)]) +(?=\S)""")
+
+/** How far a line is indented to be code, outside a list. */
+private const val INDENTED_CODE = 4
 
 /** Two or more spaces, or a tab, between two words; not after the end of a sentence. */
 private val GAP = Regex("""(?<=[^\s.!?])(?: {2,}|\t+)(?=\S)""")

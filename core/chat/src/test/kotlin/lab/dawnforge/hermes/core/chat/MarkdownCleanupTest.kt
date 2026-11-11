@@ -59,5 +59,9 @@ class MarkdownCleanupTest {
         assertEquals("Before\nAfter", prepareMarkdown("Before\n```\n```\nAfter"))
         assertEquals("Before\nAfter", prepareMarkdown("Before\n```python\n\n```\nAfter"))
         assertEquals("```\ncode\n```", prepareMarkdown("```\ncode\n```"))
+        // A fence with an info string never closes a block, and a longer fence holds shorter ones.
+        val nested = "````markdown\n```kotlin\nval x = 1\n```\n````"
+        assertEquals(nested, prepareMarkdown(nested))
+        assertEquals("```\n```kotlin\n<b>\n```", prepareMarkdown("```\n```kotlin\n<b>\n```"))
     }
 }
